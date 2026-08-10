@@ -1,0 +1,19 @@
+{
+  "name": "memory",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc && sass scss/main.scss css/main.css",
+    "watch": "sass --watch scss/main.scss css/main.css"
+  },
+  "devDependencies": {
+    "sass": "^1.102.0",
+    "typescript": "^6.0.3"
+  },
+  "private": true,
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}
