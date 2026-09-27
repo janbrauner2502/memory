@@ -1,0 +1,22 @@
+@use "../abstracts/variables" as var;
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  padding: 26px 28px;
+  border: none;
+  background-color: var.$color-accent;
+  color: var.$color-text-dark;
+  font-family: var.$font-figtree;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: 32px;
+  corner-shape: squircle;
+}
+
+.btn:focus-visible {
+  outline: 3px solid var.$color-text-white;
+  outline-offset: 4px;
+}

@@ -1,6 +1,9 @@
 /tmp
 /out-tsc
 /.idea
+/dist
+/css/
+.todo
 
 /node_modules
 npm-debug.log*
