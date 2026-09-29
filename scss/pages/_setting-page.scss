@@ -229,6 +229,7 @@
   height: 54px;
   background-color: var.$color-accent;
 
+
   &::before {
     content: "";
     position: absolute;
@@ -236,16 +237,27 @@
     width: 1rem;
     aspect-ratio: 1/1;
     background-color: var.$color-accent;
-    animation: slideDown 1s ease-in-out forwards;
-
-  }
-}
-
-@keyframes slideDown {
-  0% {
     bottom: 2.875rem;
     left: -.375rem;
   }
+
+  &--checked {
+    &::before {
+      animation: slideDown 1s ease-in-out forwards;
+
+    }
+  }
+}
+
+//.setting-page__seperator:nth-child(2 of .setting-page__seperator) {
+//
+//  &::before {
+//    animation: slideDown 1s ease-in-out forwards;
+//
+//  }
+//}
+
+@keyframes slideDown {
   100% {
     bottom: -.5rem;
     left: -.375rem;

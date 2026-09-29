@@ -1,7 +1,7 @@
 // @ts-ignore
 import "../main.scss"
 
-export function startPage() {
+export function startPageTemplate() {
     return `<main class="start-page">
         <section class="start-page__content">
             <img class="start-page__watermark" src="/assets/icons/stadia_controller.png" alt="">
@@ -21,7 +21,7 @@ export function startPage() {
 }
 
 
-export function settingPage() {
+export function settingPageTemplate() {
     return `<main class="setting-page">
         <section class="setting-page__content">
             <div class="setting-page__headline">
@@ -42,19 +42,19 @@ export function settingPage() {
                 </div>
                 <div class="setting-page__group">
                     <h2 class="setting-page__group-title setting-page__group-title--board-size">Board size</h2>
-                    <label class="setting-page__group-label"><input type="radio" name="board-size" value="16-cards"/><p>16 cards</p></label>
-                    <label class="setting-page__group-label"><input type="radio" name="board-size" value="24-cards"/><p>24 cards</p></label>
-                    <label class="setting-page__group-label"><input type="radio" name="board-size" value="36-cards"/><p>36 cards</p></label>
+                    <label class="setting-page__group-label"><input type="radio" name="board-size" value="16"/><p>16 cards</p></label>
+                    <label class="setting-page__group-label"><input type="radio" name="board-size" value="24"/><p>24 cards</p></label>
+                    <label class="setting-page__group-label"><input type="radio" name="board-size" value="36"/><p>36 cards</p></label>
                 </div>
                 <aside>
                     <div class="setting-page__board-preview"></div>
                     <section class="setting-page__game-details">
                         <p>Game theme</p>
                         <div class="setting-page__seperator"></div>
-                        <p>Orange player</p>
+                        <p>Player</p>
                         <div class="setting-page__seperator"></div>
-                        <p>32 cards</p>
-                        <button class="btn setting-page__btn" type="button" data-action="startGame">Start</button>
+                        <p>Board size</p>
+                        <button class="btn setting-page__btn" type="button" data-action="startGame" disabled>Start</button>
                     </section>
 
                 </aside>
