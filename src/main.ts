@@ -4,13 +4,13 @@ import { startPageTemplate, settingPageTemplate } from "./templates";
 
 let body = document.querySelector("body") as HTMLElement;
 let gameSetting: {
-  theme:string,
-  player:string,
-  boardSize:string
+  theme:Theme,
+  player:Player,
+  boardSize:BoardSize
 } = {
-  theme: "",
-  player: "",
-  boardSize: ""
+  theme: "vibe",
+  player: "blue",
+  boardSize: "16"
 };
 type BtnType = "settingPage" | "startGame" | "exitGame";
 type Theme = "vibe" | "gaming" | "da-project" | "food";
@@ -44,46 +44,38 @@ function prepareGame(event:MouseEvent):void {
   const input= (event.target as HTMLElement).closest('input') as HTMLElement;
   if(!input) return;
   let themeInput = document.querySelector<HTMLInputElement>('input[name="theme"]:checked');
-  let selectedTheme = themeInput?.value as Theme | undefined;
-  let selectedPlayer = document.querySelector<HTMLInputElement>('input[name="player"]:checked')?.value as Player | undefined;
-  let selectedBoardSize = document.querySelector<HTMLInputElement>('input[name="board-size"]:checked')?.value as BoardSize | undefined;
+  let playerInput = document.querySelector<HTMLInputElement>('input[name="player"]:checked');
+  let boardSizeInput = document.querySelector<HTMLInputElement>('input[name="board-size"]:checked');
 
-  if(selectedTheme) {
-    gameSetting.theme = selectedTheme;
-    const gameDetails = document.querySelector(".setting-page__game-details > p:nth-of-type(1)") as HTMLElement;
-    const separator = document.querySelector(".setting-page__game-details > .setting-page__seperator:nth-of-type(1)") as HTMLElement;
-    if(gameDetails && separator) {
-      gameDetails.textContent = themeInput?.nextElementSibling?.textContent || "";
-      separator.classList.add("setting-page__seperator--checked");
-    }
+  if(themeInput) {
+    gameSetting.theme = themeInput.value as Theme;
+    setGameSetting(1, 1, themeInput.nextElementSibling?.textContent ?? "");
   }
 
-  if(selectedPlayer) {
-    gameSetting.player = selectedPlayer;
-    const gameDetails = document.querySelector(".setting-page__game-details > p:nth-of-type(2)") as HTMLElement;
-    const separator = document.querySelector(".setting-page__game-details > .setting-page__seperator:nth-of-type(2)")  as HTMLElement;
-    if(gameDetails && separator) {
-      gameDetails.textContent = `${gameSetting.player.charAt(0).toUpperCase() + gameSetting.player.slice(1)} player`;
-      separator.classList.add("setting-page__seperator--checked");
-    }
+  if(playerInput) {
+    gameSetting.player = playerInput.value as Player;
+    setGameSetting(2, 2, `${playerInput.nextElementSibling?.textContent ?? ""} Player`);
   }
 
-  if(selectedBoardSize) {
-    gameSetting.boardSize = selectedBoardSize;
-    const gameDetails = document.querySelector(".setting-page__game-details > p:nth-of-type(3)") as HTMLElement;
-    const separator = document.querySelector(".setting-page__game-details > .setting-page__seperator:nth-of-type(2)")  as HTMLElement;
-    if(gameDetails && separator) {
-      gameDetails.textContent = `${gameSetting.boardSize} cards`;
-      separator.classList.add("setting-page__seperator--checked");
-    }
+  if(boardSizeInput) {
+    gameSetting.boardSize = boardSizeInput.value as BoardSize;
+    setGameSetting(3, 2, `Board size ${boardSizeInput.nextElementSibling?.textContent ?? ""}`);
   }
 
-  if(selectedTheme && selectedPlayer && selectedBoardSize) {
+  if(themeInput && playerInput && boardSizeInput) {
     const startBtn = document.querySelector(".setting-page__btn") as HTMLElement;
     if (!startBtn) return;
     startBtn.removeAttribute('disabled');
   }
+}
 
+function setGameSetting(indexP:number, indexDiv:number, labelName:string):void {
+    const gameDetails = document.querySelector(`.setting-page__game-details > p:nth-of-type(${indexP})`) as HTMLElement;
+    const separator = document.querySelector(`.setting-page__game-details > div:nth-of-type(${indexDiv})`) as HTMLElement;
+    if(gameDetails && separator) {
+      gameDetails.textContent =  labelName;
+      separator.classList.add("setting-page__seperator--checked");
+    }
 }
 
 

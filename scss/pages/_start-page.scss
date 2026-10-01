@@ -49,35 +49,35 @@
   font-family: var.$font-red-rose;
   transition: transform .2s ease;
 
+  &::before {
+    content: "";
+    width: 2.75rem;
+    height: 2rem;
+    background: url("../../assets/icons/stadia_controller_btn.png") center / contain no-repeat;
+    transition: all .2s ease;
+  }
+
+  &::after {
+    content: "";
+    width: 2.5rem;
+    height: 1.875rem;
+    background: url("../../assets/icons/arrow_btn_default.png") center / contain no-repeat;
+    transition: all .2s ease;
+  }
+
   &:hover {
     transform: scale(1.075);
 
-    .start-page__btn-icon {
+    &::before {
       rotate: -25deg;
       transform: scale(1.1);
     }
 
-    .start-page__btn-arrow {
-      background-image: url("/assets/icons/arrow_btn_hover.png");
+    &::after {
+      background-image: url("../../assets/icons/arrow_btn_hover.png");
     }
   }
-}
-
-.start-page__btn-label {
-  font-size: 2.5rem;
-}
-
-.start-page__btn-icon {
-  width: 44px;
-  height: 32px;
-  transition: all .2s ease;
-}
-
-.start-page__btn-arrow {
-  width: 40px;
-  height: 30px;
-  background-image: url("/assets/icons/arrow_btn_default.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  transition: all .2s ease;
+  .start-page__btn-label {
+    font-size: 2.5rem;
+  }
 }

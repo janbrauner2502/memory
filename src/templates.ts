@@ -12,9 +12,9 @@ export function startPageTemplate() {
             </div>
 
             <button id="startBtn" class="btn start-page__btn" type="button" data-action="settingPage">
-                <img class="start-page__btn-icon" src="/assets/icons/stadia_controller_btn.png" alt="">
+<!--                <img class="start-page__btn-icon" src="/assets/icons/stadia_controller_btn.png" alt="">-->
                 <span class="start-page__btn-label">Play</span>
-                <span class="start-page__btn-arrow"></span>
+<!--                <span class="start-page__btn-arrow"></span>-->
             </button>
         </section>
     </main>`;

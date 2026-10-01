@@ -249,14 +249,6 @@
   }
 }
 
-//.setting-page__seperator:nth-child(2 of .setting-page__seperator) {
-//
-//  &::before {
-//    animation: slideDown 1s ease-in-out forwards;
-//
-//  }
-//}
-
 @keyframes slideDown {
   100% {
     bottom: -.5rem;
