@@ -1,0 +1,136 @@
+@use "../abstracts/variables" as var;
+
+.game-page:has([popover]:popover-open) {
+  pointer-events: none;
+  touch-action: none;
+  overflow: hidden;
+}
+
+.game-page {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.game-page__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  min-height: 100dvh;
+  max-width: var.$content-max-width;
+  height: 100%;
+}
+
+.game-page__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 85%;
+
+  .game-page__player {
+    width: fit-content;
+    height: -webkit-fill-available;
+
+    > p {
+      display: flex;
+      align-items: center;
+
+      &::before {
+        content: "";
+        width: 1.5rem;
+        height: 1.25rem;
+      }
+
+      &:nth-child(1) {
+        color: var.$color-player-blue;
+      }
+
+      &:nth-child(2) {
+        color: var.$color-player-orange;
+      }
+    }
+  }
+
+  .game-page__btn {
+    border-radius: unset;
+    font-size: 1.5rem;
+    height: -webkit-fill-available;
+    margin: .5rem 2.5rem .5rem 0;
+  }
+}
+
+.game-page__board {
+  display: grid;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+
+  &--16{
+    grid-template-rows: repeat(4, auto);
+    grid-template-columns: repeat(4, auto);
+
+  }
+
+  &--24 {
+    grid-template-rows: repeat(6, auto);
+    grid-template-columns: repeat(4, auto);
+  }
+
+  &--36 {
+    grid-template-rows: repeat(6, auto);
+    grid-template-columns: repeat(6, auto);
+
+  }
+
+  > div {
+    transform: scale(0);
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: zoomIn 0.5s forwards;
+    animation-delay: calc(sibling-index() * 100ms);
+    cursor: pointer;
+  }
+}
+
+
+@keyframes zoomIn {
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.game-page__current-player {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+.game-page__dialog {
+  pointer-events: auto;
+  padding: 2.5rem;
+  outline: none;
+  border: none;
+  inset: 0;
+  margin: auto;
+  text-align: center;
+
+
+  .game-page__dialog-btn-wrapper {
+    display: flex;
+    margin-top: 3.375rem;
+    justify-content: center;
+
+    .game-page__dialog-btn {
+      padding: .75rem 1.25rem;
+    }
+  }
+
+  &::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(1px);
+  }
+}

@@ -4,13 +4,13 @@
   display: flex;
   justify-content: center;
   color: var.$color-text-dark;
+  height: 100%;
 }
 
 .setting-page__content {
   width: 100%;
   min-height: 100dvh;
   max-width: var.$content-max-width;
-  //background-color: tomato;
   height: 100%;
 }
 
@@ -313,5 +313,6 @@
     }
   }
 }
+
 
 

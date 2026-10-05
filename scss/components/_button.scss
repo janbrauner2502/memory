@@ -14,9 +14,5 @@
   cursor: pointer;
   border-radius: 32px;
   corner-shape: squircle;
-}
-
-.btn:focus-visible {
-  outline: 3px solid var.$color-text-white;
-  outline-offset: 4px;
+  outline: none;
 }

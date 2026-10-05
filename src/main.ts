@@ -84,6 +84,6 @@ document.addEventListener("click", (event:MouseEvent) => {
   prepareGame(event)
 })
 
-document.addEventListener("DOMContentLoaded", () => {
-  body.innerHTML = startPageTemplate();
-});
+// document.addEventListener("DOMContentLoaded", () => {
+//   body.innerHTML = startPageTemplate();
+// });
