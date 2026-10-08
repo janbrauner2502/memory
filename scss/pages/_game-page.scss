@@ -1,7 +1,5 @@
 @use "../abstracts/variables" as var;
 
-
-
 .game-page {
   display: flex;
   justify-content: center;
@@ -58,7 +56,7 @@
     border-radius: unset;
     font-size: 1.5rem;
     height: -webkit-fill-available;
-    margin: .5rem 2.5rem .5rem 0;
+    margin: 0.5rem 2.5rem 0.5rem 0;
   }
 
   &__board {
@@ -67,11 +65,10 @@
     width: 100%;
     height: 100%;
 
-    &--16{
+    &--16 {
       gap: 1rem;
       grid-template-rows: repeat(4, auto);
       grid-template-columns: repeat(4, auto);
-
     }
 
     &--24 {
@@ -82,7 +79,6 @@
     &--36 {
       grid-template-rows: repeat(6, auto);
       grid-template-columns: repeat(6, auto);
-
     }
   }
   &__card {
@@ -97,7 +93,44 @@
     &--initial {
       transform: scale(0);
       opacity: 0;
-      animation: zoomIn 0.5s forwards;
+      animation: zoomIn 0.5s forwards
+        linear(
+          0,
+          0.337 2.3%,
+          0.618 4.6%,
+          0.867 7.1%,
+          1.072 9.7%,
+          1.233 12.4%,
+          1.299 13.8%,
+          1.358 15.3%,
+          1.406 16.8%,
+          1.446 18.4%,
+          1.475 20%,
+          1.497 21.7%,
+          1.506 22.8%,
+          1.512 23.9%,
+          1.514 25%,
+          1.514 26.2%,
+          1.51 27.4%,
+          1.504 28.7%,
+          1.494 30.1%,
+          1.481 31.5%,
+          1.455 33.8%,
+          1.421 36.4%,
+          1.25 47.8%,
+          1.174 53.4%,
+          1.138 56.5%,
+          1.108 59.5%,
+          1.081 62.6%,
+          1.059 65.7%,
+          1.042 68.7%,
+          1.028 71.9%,
+          1.017 75.3%,
+          1.009 78.9%,
+          1.004 82.6%,
+          1.001 86.8%,
+          1
+        );
       animation-delay: calc(sibling-index() * 100ms);
     }
 
@@ -119,21 +152,16 @@
       backface-visibility: hidden;
     }
 
-
-    &:active {
+    &.is-flipped {
+      //pointer-events: none;
       transform: rotateY(180deg);
     }
-
-    //&.is-flipped {
-    //  transform: rotateY(180deg);
-    //}
   }
-
 
   &__current-player {
     display: flex;
     align-items: center;
-    gap: .5rem;
+    gap: 0.5rem;
   }
 
   &__dialog {
@@ -146,7 +174,7 @@
     transform: translate(-50%, -100%);
     opacity: 0;
     text-align: center;
-    animation: comeInFromTop .3s ease-in forwards;
+    animation: comeInFromTop 0.3s ease-in forwards;
 
     &::backdrop {
       background-color: rgba(0, 0, 0, 0.5);
@@ -161,7 +189,7 @@
   }
 
   &__dialog-btn {
-    padding: .75rem 1.25rem;
+    padding: 0.75rem 1.25rem;
   }
 }
 

@@ -1,8 +1,8 @@
 // @ts-ignore
-import "../main.scss"
+import "../main.scss";
 
 export function startPageTemplate() {
-    return `<main class="start-page">
+  return `<main class="start-page">
         <section class="start-page__content">
             <img class="start-page__watermark" src="/assets/icons/stadia_controller.png" alt="">
 
@@ -20,9 +20,8 @@ export function startPageTemplate() {
     </main>`;
 }
 
-
 export function settingPageTemplate() {
-    return `<main class="setting-page">
+  return `<main class="setting-page">
         <section class="setting-page__content">
             <div class="setting-page__headline">
                 <h1 class="setting-page__title">Settings</h1>
