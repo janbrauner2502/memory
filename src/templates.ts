@@ -1,5 +1,6 @@
 // @ts-ignore
 import "../main.scss";
+import { Theme, Player, BoardSize } from "./main";
 
 export function startPageTemplate() {
   return `<main class="start-page">
@@ -60,4 +61,62 @@ export function settingPageTemplate() {
             </div>
         </section>
     </main>`;
+}
+
+export function gamePageTemplate(
+  theme: Theme,
+  player: Player,
+  boardSize: BoardSize,
+) {
+  return `<main class="game-page game-page--${theme}">
+      <section class="game-page__content">
+        <header class="game-page__header">
+          <div class="game-page__player">
+            <p>Blue <span>0</span></p>
+            <p>Orange <span>0</span></p>
+          </div>
+          <div class="game-page__current-player">
+            Current player:
+            <span
+              ><img src="assets/icons/label_${theme}_${player}_player.png" alt="Player ${player}"
+            /></span>
+          </div>
+          <button
+            class="btn game-page__btn"
+            popovertarget="exitGameDialog"
+            popovertargetaction="toggle"
+          >
+            Exit game
+          </button>
+        </header>
+        <section class="game-page__board game-page__board--${boardSize}">
+        </section>
+        <dialog popover class="game-page__dialog" id="exitGameDialog">
+          <p class="game-page__dialog-text">
+            Are you sure you want to quit the game?
+          </p>
+          <div class="game-page__dialog-btn-wrapper">
+            <button
+              class="game-page__dialog-btn"
+              popovertarget="exitGameDialog"
+              popovertargetaction="hide"
+            >
+              Back to game
+            </button>
+            <button class="game-page__dialog-btn" data-action="exitGame">
+              Exit game
+            </button>
+          </div>
+        </dialog>
+      </section>
+    </main>`;
+}
+
+export function getCardTemplate(i: number) {
+  return `<div class="game-page__card--initial">
+            <div class="game-page__card" data-index="${i}">
+              <div class="game-page__card--front"></div>
+              <div class="game-page__card--back"></div>
+            </div>
+          </div>`;
 }

@@ -1,6 +1,11 @@
 // @ts-ignore
 import "../main.scss";
-import { startPageTemplate, settingPageTemplate } from "./templates";
+import {
+  startPageTemplate,
+  settingPageTemplate,
+  gamePageTemplate,
+  getCardTemplate,
+} from "./templates";
 
 let body = document.querySelector("body") as HTMLElement;
 let gameSetting: {
@@ -12,10 +17,14 @@ let gameSetting: {
   player: "blue",
   boardSize: "16",
 };
+
+let cardMotivesArray: number[] = [];
+let compareCardsArray: number[] = [];
+
 type BtnType = "settingPage" | "startGame" | "exitGame";
-type Theme = "vibe" | "gaming" | "da-project" | "food";
-type Player = "blue" | "orange";
-type BoardSize = "16" | "24" | "36";
+export type Theme = "vibe" | "gaming" | "da-project" | "food";
+export type Player = "blue" | "orange";
+export type BoardSize = "16" | "24" | "36";
 
 function changePage(event: MouseEvent): void {
   const button = (event.target as HTMLElement).closest(".btn") as HTMLElement;
@@ -29,7 +38,13 @@ function changePage(event: MouseEvent): void {
       body.innerHTML = settingPageTemplate();
       break;
     case "startGame":
-      console.log("Start game clicked");
+      body.style.pointerEvents = "none";
+      body.innerHTML = gamePageTemplate(
+        gameSetting.theme,
+        gameSetting.player,
+        gameSetting.boardSize,
+      );
+      initCardBoard(Number(gameSetting.boardSize));
       break;
     case "exitGame":
       console.log("Exit game clicked");
@@ -80,8 +95,34 @@ function prepareGame(event: MouseEvent): void {
       ".setting-page__btn",
     ) as HTMLElement;
     if (!startBtn) return;
+    setAndShuffleCardMotiveArray(gameSetting.boardSize);
     startBtn.removeAttribute("disabled");
   }
+}
+
+function initCardBoard(boardSize: number): void {
+  let refCard = document.querySelector(".game-page__board") as HTMLElement;
+  if (!refCard) return;
+  refCard.innerHTML = "";
+  for (let i = 0; i < boardSize; i++) {
+    refCard.innerHTML += getCardTemplate(i);
+  }
+  setTimeout(
+    () => {
+      body.style.pointerEvents = "unset";
+    },
+    boardSize * 100 + 500,
+  );
+}
+
+function setAndShuffleCardMotiveArray(boardSize: BoardSize): void {
+  cardMotivesArray = [];
+  for (let i = 1; i <= Number(boardSize) / 2; i++) {
+    cardMotivesArray.push(i);
+  }
+  cardMotivesArray = cardMotivesArray.concat(cardMotivesArray);
+  cardMotivesArray.sort(() => Math.random() - 0.5);
+  console.log("Card motives array set:", cardMotivesArray);
 }
 
 function setGameSetting(
@@ -106,7 +147,46 @@ function flipCard(event: MouseEvent): void {
     "div.game-page__card",
   ) as HTMLDivElement;
   if (!card) return;
-  card.classList.toggle("is-flipped");
+
+  let cardIndex = Number(card.dataset.index);
+  // console.log(
+  //   "Card clicked:",
+  //   `../assets/card-picture/vibe/card-${cardIndex}-vibe.png`,
+  // );
+
+  compareCards(cardMotivesArray[cardIndex]);
+  card.classList.add("is-flipped");
+}
+
+function compareCards(index: number) {
+  let sectionElement = document.querySelector("section") as HTMLElement;
+  compareCardsArray.push(index);
+  console.log(compareCardsArray);
+  if (compareCardsArray.length == 2) {
+    if (compareCardsArray[0] === compareCardsArray[1]) {
+      console.log("Cards match!");
+    } else {
+      sectionElement.style.pointerEvents = "none";
+      setTimeout(() => {
+        sectionElement.style.pointerEvents = "unset";
+        console.log("Cards do not match!");
+        let flippedCards = document.querySelectorAll(".is-flipped");
+        console.log(flippedCards);
+        flippedCards.forEach((card) => {
+          console.log("Removing is-flipped class from card:", card);
+          card.classList.remove("is-flipped");
+        });
+      }, 2000);
+    }
+    compareCardsArray = [];
+    console.log(
+      "Compare cards array reset:",
+      compareCardsArray,
+      "Card motives array:",
+      cardMotivesArray,
+    );
+  }
+  return;
 }
 
 document.addEventListener("click", (event: MouseEvent) => {
@@ -115,6 +195,6 @@ document.addEventListener("click", (event: MouseEvent) => {
   flipCard(event);
 });
 
-// document.addEventListener("DOMContentLoaded", () => {
-//   body.innerHTML = startPageTemplate();
-// });
+document.addEventListener("DOMContentLoaded", () => {
+  body.innerHTML = startPageTemplate();
+});
