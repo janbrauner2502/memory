@@ -47,10 +47,9 @@ function changePage(event: MouseEvent): void {
       initCardBoard(Number(gameSetting.boardSize));
       break;
     case "exitGame":
-      console.log("Exit game clicked");
+      body.innerHTML = settingPageTemplate();
       break;
     default:
-      console.log("Unknown action:", action);
   }
 }
 
@@ -146,55 +145,71 @@ function flipCard(event: MouseEvent): void {
   const card = (event.target as HTMLDivElement).closest(
     "div.game-page__card",
   ) as HTMLDivElement;
-  if (!card) return;
+  if (!card || card.classList.contains("is-flipped")) return;
 
-  let cardIndex = Number(card.dataset.index);
-  // console.log(
-  //   "Card clicked:",
-  //   `../assets/card-picture/vibe/card-${cardIndex}-vibe.png`,
-  // );
-
+  let cardIndex: number = Number(card.dataset.index);
+  setMotiveOnCard(cardIndex);
   compareCards(cardMotivesArray[cardIndex]);
   card.classList.add("is-flipped");
 }
 
-function compareCards(index: number) {
-  let sectionElement = document.querySelector("section") as HTMLElement;
+function compareCards(index: number): void {
+  let sectionElement = document.querySelector(
+    "section:nth-child(2)",
+  ) as HTMLElement;
+  if (!sectionElement) return;
   compareCardsArray.push(index);
-  console.log(compareCardsArray);
+
   if (compareCardsArray.length == 2) {
     if (compareCardsArray[0] === compareCardsArray[1]) {
-      console.log("Cards match!");
+      matchedCards(compareCardsArray[0], compareCardsArray[1]);
     } else {
       sectionElement.style.pointerEvents = "none";
       setTimeout(() => {
+        let flippedCards = document.querySelectorAll(
+          "div:not(.match) >.is-flipped",
+        );
         sectionElement.style.pointerEvents = "unset";
-        console.log("Cards do not match!");
-        let flippedCards = document.querySelectorAll(".is-flipped");
-        console.log(flippedCards);
         flippedCards.forEach((card) => {
-          console.log("Removing is-flipped class from card:", card);
           card.classList.remove("is-flipped");
         });
       }, 2000);
     }
     compareCardsArray = [];
-    console.log(
-      "Compare cards array reset:",
-      compareCardsArray,
-      "Card motives array:",
-      cardMotivesArray,
-    );
   }
   return;
 }
 
-document.addEventListener("click", (event: MouseEvent) => {
+function matchedCards(card1: number, card2: number): void {
+  let firstCardIndex = cardMotivesArray.indexOf(card1);
+  let secondCardIndex = cardMotivesArray.indexOf(card2, firstCardIndex + 1);
+  let firstCard = document.querySelector(
+    `div.game-page__card[data-index="${firstCardIndex}"]`,
+  ) as HTMLElement;
+  let secondCard = document.querySelector(
+    `div.game-page__card[data-index="${secondCardIndex}"]`,
+  ) as HTMLElement;
+  if (firstCard && secondCard) {
+    firstCard.parentElement?.classList.add("match");
+    secondCard.parentElement?.classList.add("match");
+  }
+}
+
+function setMotiveOnCard(index: number): void {
+  let setMotive = document.querySelector(
+    `div.game-page__card[data-index="${index}"]`,
+  ) as HTMLElement;
+  if (!setMotive) return;
+  let cardBackSide = setMotive.lastElementChild as HTMLElement;
+  cardBackSide.style.backgroundImage = `url(../../assets/card-picture/${gameSetting.theme}/card-${cardMotivesArray[index]}-${gameSetting.theme}.png)`;
+}
+
+document.addEventListener("click", (event: MouseEvent): void => {
   changePage(event);
   prepareGame(event);
   flipCard(event);
 });
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", (): void => {
   body.innerHTML = startPageTemplate();
 });

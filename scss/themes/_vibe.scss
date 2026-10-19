@@ -6,6 +6,7 @@ $color-header-bg: #4dd5bc33;
 $color-player-bg: #86e9d633;
 $color-card-front-1: #286f62;
 $color-card-front-2: #4dd5bc;
+$color-card-match-ds: #4dd5bc4d;
 $drop-shadow: #00000040;
 $color-bg-dialog-btn-1: #66cfbc;
 $color-bg-dialog-btn-2: #eefcf9;
@@ -80,7 +81,7 @@ $color-card-face-back: #e8f3f0;
       &--front {
         border-radius: 32px;
         corner-shape: squircle;
-        background: linear-gradient(
+        background-image: linear-gradient(
           to top right,
           $color-card-front-1 0%,
           $color-card-front-2 100%
@@ -94,8 +95,8 @@ $color-card-face-back: #e8f3f0;
           transform: translate(-50%, -50%);
           width: 60px;
           height: 48px;
-          background: url("../../assets/card-picture/front-face.png")
-            center / contain no-repeat;
+          background: url("../../assets/card-picture/front-face.png") center /
+            contain no-repeat;
           opacity: 0.2;
         }
       }
@@ -104,8 +105,22 @@ $color-card-face-back: #e8f3f0;
         border-radius: 32px;
         corner-shape: squircle;
         background-color: $color-card-face-back;
+        background-size: auto;
+        background-position: center center;
+        background-repeat: no-repeat;
+      }
+
+      &--initial {
+        &.match {
+          filter: drop-shadow(6px 6px 8px $color-card-match-ds)
+        }
       }
     }
+  }
+
+  .game-page__card--initial.match .game-page__card--back {
+    outline: 5px solid $color-card-front-2;
+    outline-offset: -5px;
   }
 
   .game-page__current-player {
@@ -150,6 +165,8 @@ $color-card-face-back: #e8f3f0;
       gap: 1.5rem;
 
       .game-page__dialog-btn {
+        border-radius: unset;
+        corner-shape: unset;
         font-size: 1.125rem;
         font-weight: bold;
         font-family: var.$font-red-rose;

@@ -103,7 +103,7 @@ export function gamePageTemplate(
             >
               Back to game
             </button>
-            <button class="game-page__dialog-btn" data-action="exitGame">
+            <button class="btn game-page__dialog-btn" type="button" data-action="exitGame">
               Exit game
             </button>
           </div>
@@ -112,9 +112,9 @@ export function gamePageTemplate(
     </main>`;
 }
 
-export function getCardTemplate(i: number) {
+export function getCardTemplate(index: number) {
   return `<div class="game-page__card--initial">
-            <div class="game-page__card" data-index="${i}">
+            <div class="game-page__card" data-index="${index}">
               <div class="game-page__card--front"></div>
               <div class="game-page__card--back"></div>
             </div>
