@@ -108,7 +108,7 @@ function initCardBoard(boardSize: number): void {
   }
   setTimeout(
     () => {
-      body.style.pointerEvents = "unset";
+      body.removeAttribute("style");
     },
     boardSize * 100 + 500,
   );
@@ -116,9 +116,12 @@ function initCardBoard(boardSize: number): void {
 
 function setAndShuffleCardMotiveArray(boardSize: BoardSize): void {
   cardMotivesArray = [];
-  for (let i = 1; i <= Number(boardSize) / 2; i++) {
-    cardMotivesArray.push(i);
+
+  while (cardMotivesArray.length < Number(boardSize) / 2) {
+    const number = Math.floor(Math.random() * 18) + 1;
+    if (cardMotivesArray.indexOf(number) === -1) cardMotivesArray.push(number);
   }
+
   cardMotivesArray = cardMotivesArray.concat(cardMotivesArray);
   cardMotivesArray.sort(() => Math.random() - 0.5);
   console.log("Card motives array set:", cardMotivesArray);

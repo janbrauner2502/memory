@@ -112,7 +112,7 @@ $color-card-face-back: #e8f3f0;
 
       &--initial {
         &.match {
-          filter: drop-shadow(6px 6px 8px $color-card-match-ds)
+          filter: drop-shadow(6px 6px 8px $color-card-match-ds);
         }
       }
     }
@@ -121,6 +121,13 @@ $color-card-face-back: #e8f3f0;
   .game-page__card--initial.match .game-page__card--back {
     outline: 5px solid $color-card-front-2;
     outline-offset: -5px;
+  }
+
+  .game-page__card--initial.match .game-page__card {
+    &:hover {
+      outline: none;
+      cursor: unset;
+    }
   }
 
   .game-page__current-player {
