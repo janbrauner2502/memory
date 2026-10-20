@@ -67,13 +67,15 @@ export function gamePageTemplate(
   theme: Theme,
   player: Player,
   boardSize: BoardSize,
+  blueScore: number,
+  orangeScore: number,
 ) {
   return `<main class="game-page game-page--${theme}">
       <section class="game-page__content">
         <header class="game-page__header">
           <div class="game-page__player">
-            <p>Blue <span>0</span></p>
-            <p>Orange <span>0</span></p>
+            <p>Blue <span>${blueScore}</span></p>
+            <p>Orange <span>${orangeScore}</span></p>
           </div>
           <div class="game-page__current-player">
             Current player:
@@ -112,11 +114,15 @@ export function gamePageTemplate(
     </main>`;
 }
 
-export function getCardTemplate(index: number) {
+export function getCardTemplate(index: number): string {
   return `<div class="game-page__card--initial">
             <div class="game-page__card" data-index="${index}">
               <div class="game-page__card--front"></div>
               <div class="game-page__card--back"></div>
             </div>
           </div>`;
+}
+
+export function getTemplateCurrentPlayer(theme: Theme, player: Player) {
+  return `<img src="assets/icons/label_${theme}_${player}_player.png" alt="Player ${player}">`;
 }

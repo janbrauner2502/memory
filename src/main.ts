@@ -5,14 +5,16 @@ import {
   settingPageTemplate,
   gamePageTemplate,
   getCardTemplate,
+  getTemplateCurrentPlayer,
 } from "./templates";
 
-let body = document.querySelector("body") as HTMLElement;
-let gameSetting: {
-  theme: Theme;
-  player: Player;
-  boardSize: BoardSize;
-} = {
+let body: HTMLElement = document.body;
+
+let currentPlayer: Player;
+let playerScore: { blue: number; orange: number };
+let failedAttempts: number;
+
+let gameSetting: { theme: Theme; player: Player; boardSize: BoardSize } = {
   theme: "vibe",
   player: "blue",
   boardSize: "16",
@@ -38,12 +40,17 @@ function changePage(event: MouseEvent): void {
       body.innerHTML = settingPageTemplate();
       break;
     case "startGame":
+      failedAttempts = 0;
+      playerScore = { blue: 0, orange: 0 };
       body.style.pointerEvents = "none";
       body.innerHTML = gamePageTemplate(
         gameSetting.theme,
         gameSetting.player,
         gameSetting.boardSize,
+        playerScore.blue,
+        playerScore.orange,
       );
+      currentPlayer = gameSetting.player;
       initCardBoard(Number(gameSetting.boardSize));
       break;
     case "exitGame":
@@ -157,26 +164,52 @@ function flipCard(event: MouseEvent): void {
 }
 
 function compareCards(index: number): void {
-  let sectionElement = document.querySelector(
+  let blueScore = document.querySelector(
+    `.game-page__player > p:nth-child(1) > span`,
+  ) as HTMLElement;
+  let orangeScore = document.querySelector(
+    `.game-page__player > p:nth-child(2) > span`,
+  ) as HTMLElement;
+  const currentPlayerDiv = document.querySelector(
+    ".game-page__current-player",
+  ) as HTMLElement;
+  const currentPlayerSpan = currentPlayerDiv?.firstElementChild;
+  const sectionElement = document.querySelector(
     "section:nth-child(2)",
   ) as HTMLElement;
-  if (!sectionElement) return;
+  if (!sectionElement || !currentPlayerSpan) return;
   compareCardsArray.push(index);
 
   if (compareCardsArray.length == 2) {
     if (compareCardsArray[0] === compareCardsArray[1]) {
       matchedCards(compareCardsArray[0], compareCardsArray[1]);
+      playerScore[currentPlayer] += 1;
+      blueScore.textContent = `${playerScore.blue}`;
+      orangeScore.textContent = `${playerScore.orange}`;
     } else {
+      failedAttempts += 1;
       sectionElement.style.pointerEvents = "none";
       setTimeout(() => {
         let flippedCards = document.querySelectorAll(
           "div:not(.match) >.is-flipped",
         );
-        sectionElement.style.pointerEvents = "unset";
+        sectionElement.removeAttribute("style");
         flippedCards.forEach((card) => {
           card.classList.remove("is-flipped");
         });
       }, 2000);
+      if (failedAttempts === 3) {
+        if (currentPlayer === "blue") {
+          currentPlayer = "orange";
+        } else {
+          currentPlayer = "blue";
+        }
+        failedAttempts = 0;
+        currentPlayerSpan.innerHTML = getTemplateCurrentPlayer(
+          gameSetting.theme,
+          currentPlayer,
+        );
+      }
     }
     compareCardsArray = [];
   }

@@ -61,6 +61,10 @@ $color-card-face-back: #e8f3f0;
               center / contain no-repeat;
           }
         }
+
+        > span {
+          width: 1rem;
+        }
       }
     }
   }
