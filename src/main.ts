@@ -187,16 +187,7 @@ function compareCards(index: number): void {
       playerScore[currentPlayer] += 1;
       blueScore.textContent = `${playerScore.blue}`;
       orangeScore.textContent = `${playerScore.orange}`;
-      finalScore = playerScore.blue + playerScore.orange;
-      if (finalScore === Number(gameSetting.boardSize) / 2) {
-        if (playerScore.blue > playerScore.orange) {
-          console.log("Winner is blue");
-        } else if (playerScore.blue < playerScore.orange) {
-          console.log("Winner is orange");
-        } else {
-          console.log("Draw");
-        }
-      }
+      checkGameEnd();
     } else {
       failedAttempts += 1;
       sectionElement.style.pointerEvents = "none";
@@ -225,6 +216,19 @@ function compareCards(index: number): void {
     compareCardsArray = [];
   }
   return;
+}
+
+function checkGameEnd(): void {
+  finalScore = playerScore.blue + playerScore.orange;
+  if (finalScore === Number(gameSetting.boardSize) / 2) {
+    if (playerScore.blue > playerScore.orange) {
+      console.log("Winner is blue");
+    } else if (playerScore.blue < playerScore.orange) {
+      console.log("Winner is orange");
+    } else {
+      console.log("Draw");
+    }
+  }
 }
 
 function matchedCards(card1: number, card2: number): void {
