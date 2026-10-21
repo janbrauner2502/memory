@@ -12,6 +12,7 @@ let body: HTMLElement = document.body;
 
 let currentPlayer: Player;
 let playerScore: { blue: number; orange: number };
+let finalScore: number;
 let failedAttempts: number;
 
 let gameSetting: { theme: Theme; player: Player; boardSize: BoardSize } = {
@@ -186,6 +187,16 @@ function compareCards(index: number): void {
       playerScore[currentPlayer] += 1;
       blueScore.textContent = `${playerScore.blue}`;
       orangeScore.textContent = `${playerScore.orange}`;
+      finalScore = playerScore.blue + playerScore.orange;
+      if (finalScore === Number(gameSetting.boardSize) / 2) {
+        if (playerScore.blue > playerScore.orange) {
+          console.log("Winner is blue");
+        } else if (playerScore.blue < playerScore.orange) {
+          console.log("Winner is orange");
+        } else {
+          console.log("Draw");
+        }
+      }
     } else {
       failedAttempts += 1;
       sectionElement.style.pointerEvents = "none";

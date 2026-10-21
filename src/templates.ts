@@ -2,26 +2,22 @@
 import "../main.scss";
 import { Theme, Player, BoardSize } from "./main";
 
-export function startPageTemplate() {
+export function startPageTemplate(): string {
   return `<main class="start-page">
         <section class="start-page__content">
             <img class="start-page__watermark" src="/assets/icons/stadia_controller.png" alt="">
-
             <div class="start-page__text">
                 <p class="start-page__kicker">It’s play time.</p>
                 <h1 class="start-page__headline">Ready to play?</h1>
             </div>
-
             <button id="startBtn" class="btn start-page__btn" type="button" data-action="settingPage">
-<!--                <img class="start-page__btn-icon" src="/assets/icons/stadia_controller_btn.png" alt="">-->
                 <span class="start-page__btn-label">Play</span>
-<!--                <span class="start-page__btn-arrow"></span>-->
             </button>
         </section>
     </main>`;
 }
 
-export function settingPageTemplate() {
+export function settingPageTemplate(): string {
   return `<main class="setting-page">
         <section class="setting-page__content">
             <div class="setting-page__headline">
@@ -69,7 +65,7 @@ export function gamePageTemplate(
   boardSize: BoardSize,
   blueScore: number,
   orangeScore: number,
-) {
+): string {
   return `<main class="game-page game-page--${theme}">
       <section class="game-page__content">
         <header class="game-page__header">
@@ -86,7 +82,7 @@ export function gamePageTemplate(
           <button
             class="btn game-page__btn"
             popovertarget="exitGameDialog"
-            popovertargetaction="toggle"
+            popovertargetaction="show"
           >
             Exit game
           </button>
@@ -98,11 +94,7 @@ export function gamePageTemplate(
             Are you sure you want to quit the game?
           </p>
           <div class="game-page__dialog-btn-wrapper">
-            <button
-              class="game-page__dialog-btn"
-              popovertarget="exitGameDialog"
-              popovertargetaction="hide"
-            >
+            <button class="game-page__dialog-btn" popovertarget="exitGameDialog" popovertargetaction="hide" type="button">
               Back to game
             </button>
             <button class="btn game-page__dialog-btn" type="button" data-action="exitGame">
