@@ -58,6 +58,7 @@ function changePage(event: MouseEvent): void {
       body.innerHTML = settingPageTemplate();
       break;
     default:
+      body.innerHTML = startPageTemplate();
   }
 }
 
@@ -261,6 +262,6 @@ document.addEventListener("click", (event: MouseEvent): void => {
   flipCard(event);
 });
 
-document.addEventListener("DOMContentLoaded", (): void => {
-  body.innerHTML = startPageTemplate();
-});
+// document.addEventListener("DOMContentLoaded", (): void => {
+//   body.innerHTML = startPageTemplate();
+// });

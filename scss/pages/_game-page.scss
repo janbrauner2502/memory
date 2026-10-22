@@ -188,7 +188,12 @@
   }
 
   [popover] {
-    transition: top, transform, display, overlay, 0.3s allow-discrete ease;
+    transition:
+      top,
+      transform,
+      display,
+      overlay,
+      0.3s allow-discrete ease;
     top: 0;
     left: 50%;
     transform: translate(-50%, -100%);
