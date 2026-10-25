@@ -1,20 +1,17 @@
-/* Stage: same size as Confetti.svg (1234 x 327) */
 .confetti {
   position: relative;
   width: 1234px;
   height: 327px;
   overflow: hidden;
-  //background: #ffffff;
 }
 
-/* Each piece covers the whole stage, so transform-origin can use stage coordinates */
 .confetti__piece {
   position: absolute;
   inset: 0;
-  animation: confetti-burst 3s linear forwards;
+  animation: confetti-burst 3s linear both;
+  animation-delay: 500ms;
 }
 
-/* The shape is one cut-out of the confetti image, placed like the rect in the SVG */
 .confetti__shape {
   position: absolute;
   top: 0;
@@ -43,7 +40,6 @@
 .confetti__shape--8 { left: 1084.93px; top: 14px; transform: rotate(16.3392deg); }
 .confetti__shape--9 { transform: matrix(0.275817, -0.96121, -0.96121, -0.275817, 998.929, 245.578); }
 
-/* Per piece: its center, where it starts (offset from bottom center) and its spin */
 .confetti__piece--1 { transform-origin: 258.9px 127.6px;  --start-x: 358px;  --start-y: 232px; --spin: -200deg; }
 .confetti__piece--2 { transform-origin: 608.1px 116.2px;  --start-x: 9px;    --start-y: 244px; --spin: 160deg; }
 .confetti__piece--3 { transform-origin: 1024.8px 83.2px;  --start-x: -408px; --start-y: 277px; --spin: 220deg; }
@@ -54,7 +50,6 @@
 .confetti__piece--8 { transform-origin: 1131px 132.9px;   --start-x: -514px; --start-y: 227px; --spin: -180deg; }
 .confetti__piece--9 { transform-origin: 953.1px 185.7px;  --start-x: -336px; --start-y: 174px; --spin: 200deg; }
 
-/* 0 - 0.75s burst out, then it stays at the position of the original SVG until 3s */
 @keyframes confetti-burst {
   0% {
     opacity: 0;

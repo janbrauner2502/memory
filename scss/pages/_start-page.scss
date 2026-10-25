@@ -3,81 +3,84 @@
 .start-page {
   display: flex;
   justify-content: center;
-}
 
-.start-page__content {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  min-height: 100dvh;
-  overflow: hidden;
-  background-color: var.$color-bg-start-page;
-  color: var.$color-text-white;
-}
-
-.start-page__watermark {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  pointer-events: none;
-}
-
-.start-page__text {
-  position: relative;
-}
-
-.start-page__kicker {
-  font-family: var.$font-almarai;
-  font-size: 46px;
-  font-weight: 400;
-}
-
-.start-page__headline {
-  font-family: var.$font-red-rose;
-  margin-top: 16px;
-  font-size: 144px;
-  font-weight: 700;
-  line-height: 100%;
-}
-
-.start-page__btn {
-  position: relative;
-  margin-top: 80px;
-  font-family: var.$font-red-rose;
-  transition: transform .2s ease;
-
-  &::before {
-    content: "";
-    width: 2.75rem;
-    height: 2rem;
-    background: url("../../assets/icons/stadia_controller_btn.png") center / contain no-repeat;
-    transition: all .2s ease;
+  &__content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 100dvh;
+    overflow: hidden;
+    background-color: var.$color-bg-start-page;
+    color: var.$color-text-white;
   }
 
-  &::after {
-    content: "";
-    width: 2.5rem;
-    height: 1.875rem;
-    background: url("../../assets/icons/arrow_btn_default.png") center / contain no-repeat;
-    transition: all .2s ease;
+  &__watermark {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    pointer-events: none;
   }
 
-  &:hover {
-    transform: scale(1.075);
+  &__text {
+    position: relative;
+  }
+
+  &__kicker {
+    font-family: var.$font-almarai;
+    font-size: 46px;
+    font-weight: 400;
+  }
+
+  &__headline {
+    font-family: var.$font-red-rose;
+    margin-top: 16px;
+    font-size: 144px;
+    font-weight: 700;
+    line-height: 100%;
+  }
+
+  &__btn {
+    position: relative;
+    margin-top: 80px;
+    font-family: var.$font-red-rose;
+    transition: transform 0.2s ease;
 
     &::before {
-      rotate: -25deg;
-      transform: scale(1.1);
+      content: "";
+      width: 2.75rem;
+      height: 2rem;
+      background: url("../../assets/icons/stadia_controller_btn.png") center /
+        contain no-repeat;
+      transition: all 0.2s ease;
     }
 
     &::after {
-      background-image: url("../../assets/icons/arrow_btn_hover.png");
+      content: "";
+      width: 2.5rem;
+      height: 1.875rem;
+      background: url("../../assets/icons/arrow_btn_default.png") center /
+        contain no-repeat;
+      transition: all 0.2s ease;
+    }
+
+    &:hover {
+      transform: scale(1.075);
+
+      &::before {
+        rotate: -25deg;
+        transform: scale(1.1);
+      }
+
+      &::after {
+        background-image: url("../../assets/icons/arrow_btn_hover.png");
+      }
     }
   }
-  .start-page__btn-label {
+
+  &__btn-label {
     font-size: 2.5rem;
   }
 }

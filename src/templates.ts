@@ -118,3 +118,80 @@ export function getCardTemplate(index: number): string {
 export function getTemplateCurrentPlayer(theme: Theme, player: Player) {
   return `<img src="assets/icons/label_${theme}_${player}_player.png" alt="Player ${player}">`;
 }
+
+export function getEndGameTemplate(
+  theme: Theme,
+  blueScore: number,
+  orangeScore: number,
+): string {
+  return `<main class="endgame-page endgame-page--${theme}">
+    <section class="endgame-page__content">
+        <div class="endgame-page__header">
+            <p><span>Game over</span></p>
+        </div>
+        <div class="endgame-page__finalscore">
+            <p>Final score</p>
+            <div class="endgame-page__playerscore">
+                <p>Blue <span>${blueScore}</span></p>
+                <p>Orange <span>${orangeScore}</span></p>
+            </div>
+        </div>
+    </section>
+</main>`;
+}
+
+export function getEndGameContentWinnerTemplate(
+  theme: Theme,
+  player: Player,
+): string {
+  return `<header class="confetti">${getWinnerHeaderTemplate()}</header>
+          <div class="endgame-page__winner">
+            <div class="endgame-page__winner-header">
+                <p>The winner is</p>
+                <p class="endgame-page__player" data-color="${player}">${player.toUpperCase()} PLAYER</p>
+            </div>
+            <img src="./assets/card-picture/${theme}/winner-${player}.png" alt="Winner icon">
+            <button class="btn endgame-page__btn" type="button" data-action="default">Back to start</button>
+        </div>`;
+}
+
+export function getEndGameContentDrawTemplate(theme: Theme): string {
+  return `<div class="endgame-page__draw">
+            <div class="endgame-page__header">
+                <p>It's a</p>
+                <p><span>Draw</span></p>
+            </div>
+            <img src="./assets/card-picture/${theme}/winner-draw.png" alt="">
+            <button class="btn endgame-page__btn" type="button" data-action="default">Back to start</button>
+        </div>`;
+}
+
+export function getWinnerHeaderTemplate(): string {
+  return `<div class="confetti__piece confetti__piece--1">
+              <div class="confetti__shape confetti__shape--1"></div>
+          </div>
+          <div class="confetti__piece confetti__piece--2">
+              <div class="confetti__shape confetti__shape--2"></div>
+          </div>
+          <div class="confetti__piece confetti__piece--3">
+              <div class="confetti__shape confetti__shape--3"></div>
+          </div>
+          <div class="confetti__piece confetti__piece--4">
+              <div class="confetti__shape confetti__shape--4"></div>
+          </div>
+          <div class="confetti__piece confetti__piece--5">
+              <div class="confetti__shape confetti__shape--5"></div>
+          </div>
+          <div class="confetti__piece confetti__piece--6">
+              <div class="confetti__shape confetti__shape--6"></div>
+          </div>
+          <div class="confetti__piece confetti__piece--7">
+              <div class="confetti__shape confetti__shape--7"></div>
+          </div>
+          <div class="confetti__piece confetti__piece--8">
+              <div class="confetti__shape confetti__shape--8"></div>
+          </div>
+          <div class="confetti__piece confetti__piece--9">
+              <div class="confetti__shape confetti__shape--9"></div>
+          </div>`;
+}

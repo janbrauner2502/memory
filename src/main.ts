@@ -6,6 +6,9 @@ import {
   gamePageTemplate,
   getCardTemplate,
   getTemplateCurrentPlayer,
+  getEndGameTemplate,
+  getEndGameContentWinnerTemplate,
+  getEndGameContentDrawTemplate,
 } from "./templates";
 
 let body: HTMLElement = document.body;
@@ -192,7 +195,7 @@ function compareCards(index: number): void {
     } else {
       failedAttempts += 1;
       sectionElement.style.pointerEvents = "none";
-      setTimeout(() => {
+      setTimeout((): void => {
         let flippedCards = document.querySelectorAll(
           "div:not(.match) >.is-flipped",
         );
@@ -222,14 +225,38 @@ function compareCards(index: number): void {
 function checkGameEnd(): void {
   finalScore = playerScore.blue + playerScore.orange;
   if (finalScore === Number(gameSetting.boardSize) / 2) {
-    if (playerScore.blue > playerScore.orange) {
-      console.log("Winner is blue");
-    } else if (playerScore.blue < playerScore.orange) {
-      console.log("Winner is orange");
-    } else {
-      console.log("Draw");
-    }
+    setTimeout((): void => {
+      body.innerHTML = getEndGameTemplate(
+        gameSetting.theme,
+        playerScore.blue,
+        playerScore.orange,
+      );
+      setTimeout((): void => {
+        showEndGameResult();
+      }, 2000);
+    }, 2000);
   }
+}
+
+function showEndGameResult(): void {
+  const endGameContent = document.querySelector(".endgame-page__content");
+  let winner: Player;
+  if (!endGameContent) return;
+
+  if (playerScore.blue === playerScore.orange) {
+    endGameContent.innerHTML = getEndGameContentDrawTemplate(gameSetting.theme);
+    return;
+  }
+
+  if (playerScore.blue > playerScore.orange) {
+    winner = "blue";
+  } else {
+    winner = "orange";
+  }
+  endGameContent.innerHTML = getEndGameContentWinnerTemplate(
+    gameSetting.theme,
+    winner,
+  );
 }
 
 function matchedCards(card1: number, card2: number): void {
@@ -262,6 +289,6 @@ document.addEventListener("click", (event: MouseEvent): void => {
   flipCard(event);
 });
 
-// document.addEventListener("DOMContentLoaded", (): void => {
-//   body.innerHTML = startPageTemplate();
-// });
+document.addEventListener("DOMContentLoaded", (): void => {
+  body.innerHTML = startPageTemplate();
+});

@@ -5,20 +5,20 @@ $color-card-front-2: #4dd5bc;
 .endgame-page {
   user-select: none;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   width: 100%;
   min-height: 100dvh;
 
   &__content {
     max-width: var.$content-max-width;
-    inset: 0;
     margin: auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-direction: column;
     width: 62.5rem;
-    height: 21rem;
   }
 
   &__wrapper {
@@ -31,11 +31,8 @@ $color-card-front-2: #4dd5bc;
   }
 
   &__header {
-    //background: #2BB1FF;
-
     p {
       width: 100%;
-      //background: #F0EA6E;
       text-align: center;
       line-height: 1;
       text-box: trim-both cap alphabetic;
@@ -57,9 +54,6 @@ $color-card-front-2: #4dd5bc;
   }
 
   &__playerscore {
-    display: flex;
-    //height: -webkit-fill-available;
-
     p {
       display: flex;
       align-items: center;
@@ -95,7 +89,6 @@ $color-card-front-2: #4dd5bc;
     align-items: center;
     width: fit-content;
     margin: 0 auto auto auto;
-    inset: 0;
     row-gap: 4rem;
   }
 
@@ -104,6 +97,7 @@ $color-card-front-2: #4dd5bc;
     flex-direction: column;
     align-items: center;
     row-gap: .5rem;
+
     p {
       &:nth-child(1) {
         font-size: 2.5rem;
@@ -112,9 +106,20 @@ $color-card-front-2: #4dd5bc;
     }
   }
 
+  &__draw {
+    margin: auto;
+  }
+
   &__player {
     font-size: 4rem;
-    color: orange;
     font-weight: bold;
+
+    &[data-color="orange"] {
+      color: var.$color-player-orange;
+    }
+
+    &[data-color="blue"] {
+      color: var.$color-player-blue;
+    }
   }
 }
