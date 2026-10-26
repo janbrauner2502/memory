@@ -144,7 +144,7 @@ export function getEndGameContentWinnerTemplate(
   theme: Theme,
   player: Player,
 ): string {
-  return `<header class="confetti">${getWinnerHeaderTemplate()}</header>
+  return `<header class="confetti confetti--${theme === "vibe" ? "vibe" : "done"}">${getWinnerHeaderTemplate()}</header>
           <div class="endgame-page__winner">
             <div class="endgame-page__winner-header">
                 <p>The winner is</p>
