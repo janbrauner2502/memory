@@ -70,13 +70,13 @@ export function gamePageTemplate(
       <section class="game-page__content">
         <header class="game-page__header">
           <div class="game-page__player">
-            <p>Blue <span>${blueScore}</span></p>
-            <p>Orange <span>${orangeScore}</span></p>
+            <p>${theme === "vibe" ? "Blue" : ""} <span>${blueScore}</span></p>
+            <p>${theme === "vibe" ? "Orange" : ""} <span>${orangeScore}</span></p>
           </div>
           <div class="game-page__current-player">
             Current player:
             <span
-              ><img src="assets/icons/label_${theme}_${player}_player.png" alt="Player ${player}"
+              ><img src="assets/icons/label_${theme}_${player}_${theme === "vibe" ? "" : "current-"}player.png" alt="Player ${player}"
             /></span>
           </div>
           <button
@@ -116,7 +116,7 @@ export function getCardTemplate(index: number): string {
 }
 
 export function getTemplateCurrentPlayer(theme: Theme, player: Player) {
-  return `<img src="assets/icons/label_${theme}_${player}_player.png" alt="Player ${player}">`;
+  return `<img src="assets/icons/label_${theme}_${player}_${theme === "vibe" ? "" : "current-"}player.png" alt="Player ${player}">`;
 }
 
 export function getEndGameTemplate(
@@ -132,8 +132,8 @@ export function getEndGameTemplate(
         <div class="endgame-page__finalscore">
             <p>Final score</p>
             <div class="endgame-page__playerscore">
-                <p>Blue <span>${blueScore}</span></p>
-                <p>Orange <span>${orangeScore}</span></p>
+                <p>${theme === "vibe" ? "Blue " : ""}<span>${blueScore}</span></p>
+                <p>${theme === "vibe" ? "Orange " : ""}<span>${orangeScore}</span></p>
             </div>
         </div>
     </section>
@@ -148,10 +148,10 @@ export function getEndGameContentWinnerTemplate(
           <div class="endgame-page__winner">
             <div class="endgame-page__winner-header">
                 <p>The winner is</p>
-                <p class="endgame-page__player" data-color="${player}">${player.toUpperCase()} PLAYER</p>
+                <p class="endgame-page__player" data-color="${player}">${theme === "vibe" ? `${player.toUpperCase()} PLAYER` : `${player.charAt(0).toUpperCase() + player.slice(1)} Player`}</p>
             </div>
-            <img src="./assets/card-picture/${theme}/winner-${player}.png" alt="Winner icon">
-            <button class="btn endgame-page__btn" type="button" data-action="default">Back to start</button>
+            <img src="./assets/card-picture/${theme}/winner${theme === "gaming" ? "" : `-${player}`}.png" alt="Winner icon">
+            <button class="btn endgame-page__btn" type="button" data-action="default">${theme === "vibe" ? "Back to start" : "Home"}</button>
         </div>`;
 }
 
@@ -159,10 +159,10 @@ export function getEndGameContentDrawTemplate(theme: Theme): string {
   return `<div class="endgame-page__draw">
             <div class="endgame-page__header">
                 <p>It's a</p>
-                <p><span>Draw</span></p>
+                <p><span>${theme === "vibe" ? "Draw" : ""}</span></p>
             </div>
             <img src="./assets/card-picture/${theme}/winner-draw.png" alt="">
-            <button class="btn endgame-page__btn" type="button" data-action="default">Back to start</button>
+            <button class="btn endgame-page__btn" type="button" data-action="default">${theme === "vibe" ? "Back to start" : "Home"}</button>
         </div>`;
 }
 

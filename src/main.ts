@@ -46,6 +46,7 @@ function changePage(event: MouseEvent): void {
       failedAttempts = 0;
       playerScore = { blue: 0, orange: 0 };
       body.style.pointerEvents = "none";
+      body.style.overflow = "hidden";
       body.innerHTML = gamePageTemplate(
         gameSetting.theme,
         gameSetting.player,
