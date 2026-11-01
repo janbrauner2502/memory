@@ -136,7 +136,6 @@ function setAndShuffleCardMotiveArray(boardSize: BoardSize): void {
 
   cardMotivesArray = cardMotivesArray.concat(cardMotivesArray);
   cardMotivesArray.sort(() => Math.random() - 0.5);
-  console.log("Card motives array set:", cardMotivesArray);
 }
 
 function setGameSetting(
@@ -240,23 +239,24 @@ function checkGameEnd(): void {
 
 function showEndGameResult(): void {
   const endGameContent = document.querySelector(".endgame-page__content");
-  let winner: Player;
-  if (!endGameContent) return;
+  const endGameGameover = document.querySelector(".endgame-page__gameover");
+  if (!endGameContent || !endGameGameover) return;
 
+  endGameGameover.classList.add("endgame-page__gameover--hidden");
+  endGameGameover.addEventListener("animationend", (): void => {
+    endGameGameover.remove();
+  });
+  endGameContent.insertAdjacentHTML("beforeend", getEndGameResultTemplate());
+}
+
+function getEndGameResultTemplate(): string {
   if (playerScore.blue === playerScore.orange) {
-    endGameContent.innerHTML = getEndGameContentDrawTemplate(gameSetting.theme);
-    return;
+    return getEndGameContentDrawTemplate(gameSetting.theme);
   }
-
   if (playerScore.blue > playerScore.orange) {
-    winner = "blue";
-  } else {
-    winner = "orange";
+    return getEndGameContentWinnerTemplate(gameSetting.theme, "blue");
   }
-  endGameContent.innerHTML = getEndGameContentWinnerTemplate(
-    gameSetting.theme,
-    winner,
-  );
+  return getEndGameContentWinnerTemplate(gameSetting.theme, "orange");
 }
 
 function matchedCards(card1: number, card2: number): void {

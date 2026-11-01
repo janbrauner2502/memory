@@ -197,6 +197,7 @@ $color-player-orange: #EA6900;
 
     &__player {
       text-shadow: 4px 4px 8px #00000033;
+      letter-spacing: 7%;
 
       &[data-color="orange"] {
         color: $color-player-orange;
