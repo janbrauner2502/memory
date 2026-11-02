@@ -280,7 +280,8 @@ function setMotiveOnCard(index: number): void {
   ) as HTMLElement;
   if (!setMotive) return;
   let cardBackSide = setMotive.lastElementChild as HTMLElement;
-  cardBackSide.style.backgroundImage = `url(../../assets/card-picture/${gameSetting.theme}/card-${cardMotivesArray[index]}-${gameSetting.theme}.png)`;
+  // cardBackSide.innerHTML = `<img src="./assets/card-picture/${gameSetting.theme}/card-${cardMotivesArray[index]}.png" alt="Card motive ${cardMotivesArray[index]}">`;
+  cardBackSide.style.backgroundImage = `url(../../assets/card-picture/${gameSetting.theme}/card-${cardMotivesArray[index]}.png)`;
 }
 
 document.addEventListener("click", (event: MouseEvent): void => {

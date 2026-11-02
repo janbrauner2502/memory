@@ -129,7 +129,7 @@ export function getEndGameTemplate(
     <section class="endgame-page__content">
         <div class="endgame-page__gameover">
             <div class="endgame-page__header">
-                <p><span>Game over</span></p>
+                <p><span>${theme === "vibe" ? "Game over" : "GAME OVER"}</span></p>
             </div>
             <div class="endgame-page__finalscore">
                 <p>Final score</p>

@@ -1,0 +1,313 @@
+@use "../abstracts/variables" as var;
+
+$color-bg-1: #BFE5F2;
+$color-bg-2: #64F5F88F;
+$color-header-bg-1: #F0F3F4;
+$color-player-bg: #FFFFFF;
+$color-card-front-1: #1E7594;
+$color-card-front-2: #EAF2F4;
+$color-card-match-ds: #1E7594;
+$drop-shadow: #00000040;
+$color-bg-dialog-btn-1: #BFE5F2;
+$color-bg-dialog-btn-2: #FD8A81;
+$color-dialog: #F0F6F9;
+$color-card-face-back: #F6F1F3;
+$color-player-blue: #097FC5;
+$color-player-orange: #EA6900;
+
+
+.game-page--da-project {
+  background: linear-gradient(45deg, $color-bg-1 0%, $color-bg-2 50%);
+  font-family: var.$font-figtree;
+
+  .game-page {
+    &__header {
+      background: $color-header-bg-1;
+      border-radius: .625rem;
+      height: 4rem;
+      margin-top: 2.375rem;
+      margin-bottom: 3.375rem;
+      font-size: 1.5rem;
+      font-weight: bold;
+      box-shadow: 3px 2px 10px 0 rgba(0, 0, 0, 0.2);
+    }
+
+    &__board {
+      gap: 0.375rem;
+    }
+
+    &__card {
+      width: 120px;
+      aspect-ratio: 1/calc(100/120);
+      border-radius: .6125rem;
+
+      &:hover {
+        outline: 2px solid $color-card-front-2;
+      }
+
+      &--front {
+        border-radius: .6125rem;
+        background-color: $color-card-front-1;
+
+        &::before {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 60px;
+          height: 48px;
+          background: url("../../assets/card-picture/front-face.png") center /
+            contain no-repeat;
+          opacity: 0.2;
+        }
+      }
+
+      &--back {
+        border-radius: .6125rem;
+        background-color: $color-card-face-back;
+        //place-items: center;
+        background-size: auto;
+        background-position: center center;
+        background-repeat: no-repeat;
+      }
+    }
+
+    &__current-player {
+      font-weight: bold;
+      font-size: 1.625rem;
+      color: $color-card-front-1;
+
+      span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: fit-content;
+        height: fit-content;
+        border-radius: .75rem;
+
+        img {
+          width: 2.5rem;
+          height: 2.5rem;
+          border-radius: .75rem;
+        }
+      }
+    }
+
+    &__dialog {
+      width: 34rem;
+      border-radius: 1.125rem;
+      background-color: $color-dialog;
+
+      p {
+        font-size: 2rem;
+      }
+
+      &-btn-wrapper {
+        gap: 1.5rem;
+      }
+    }
+
+    &__dialog-btn {
+      border-radius: .625rem;
+      corner-shape: unset;
+      font-size: 1rem;
+      font-weight: bold;
+      font-family: var.$font-figtree;
+      cursor: pointer;
+      border: none;
+      transition: all 0.1s ease;
+
+      &:nth-child(1) {
+        background-color: $color-bg-dialog-btn-1;
+        color: $color-card-front-1;
+        box-shadow: 3px 3px 5px 0 $drop-shadow;
+
+        &:hover {
+          color: $color-bg-dialog-btn-1;
+          background-color: $color-card-front-1;
+          box-shadow: unset;
+        }
+      }
+
+      &:nth-child(2) {
+        background-color: $color-bg-dialog-btn-2;
+        color: var.$color-text-white;
+        box-shadow: 3px 3px 5px 0 $drop-shadow;
+
+        &:hover {
+          background-color: #ED5B50;
+          box-shadow: unset;
+        }
+      }
+    }
+  }
+
+  .game-page__card--initial.match .game-page__card--back {
+    outline: 3px solid $color-card-front-1;
+    outline-offset: -3px;
+  }
+
+  .game-page__card--initial.match .game-page__card {
+    &:hover {
+      outline: none;
+      cursor: unset;
+    }
+  }
+}
+
+.endgame-page--da-project {
+  background-color: $color-card-front-1;
+  font-family: var.$font-figtree;
+
+  .endgame-page {
+    &__header {
+
+      p {
+        text-box: trim-both cap alphabetic;
+
+        span {
+          line-height: inherit;
+          color: #FD5B4F;
+          filter: drop-shadow(4px 4px 4px #00000040);
+        }
+      }
+    }
+
+    &__finalscore {
+      height: 7.5rem;
+      justify-content: space-between;
+
+      > p {
+        color: #ffffff;
+        font-weight: bold;
+      }
+    }
+
+    &__winner {
+      margin: unset;
+
+      &-header {
+        p:nth-child(1) {
+          font-size: 1.875rem;
+        }
+      }
+    }
+
+    &__player {
+      font-size: 5rem;
+      color: var.$color-text-white;
+    }
+
+    &__draw {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      row-gap: 4rem;
+
+      p {
+        &:nth-child(1) {
+          margin-bottom: 1rem;
+          font-weight: normal;
+          font-size: 2.5rem;
+          color: #ffffff;
+        }
+
+        &:nth-child(2) {
+          margin-top: 2rem;
+          span {
+            &::before {
+              content: "DRAW";
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.endgame-page--da-project .endgame-page__btn,
+.game-page--da-project .game-page__btn {
+  border-radius: .625rem;
+  font-family: var.$font-figtree;
+  padding: 0.125rem 1.625rem 0.125rem 1.625rem;
+  color: #1E7594;
+  background-color: #BFE5F2;
+  font-weight: bold;
+
+  &:hover::before {
+    filter: drop-shadow(3px 3px 4px $drop-shadow);
+    background: url("../../assets/icons/button_vibe_exit.png") center / contain no-repeat;
+  }
+}
+
+.endgame-page--da-project .endgame-page__playerscore,
+.game-page--da-project .game-page__player {
+  display: flex;
+  background-color: $color-player-bg;
+  border-radius: .625rem;
+  margin-left: 2.5rem;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+
+  p {
+    gap: 0.5rem;
+    padding: 0 20px;
+
+    &::before {
+      content: "";
+      width: 1.25rem;
+      height: 2rem;
+    }
+
+    &:nth-child(1) {
+      color: $color-player-blue;
+
+      &::before {
+        background: url("../../assets/icons/label_gaming_blue_player.png") center / contain no-repeat;
+      }
+    }
+
+    &:nth-child(2) {
+      color: $color-player-orange;
+
+      &::before {
+        background: url("../../assets/icons/label_gaming_orange_player.png") center / contain no-repeat;
+      }
+    }
+
+    > span {
+      width: 1rem;
+      font-weight: bold;
+    }
+  }
+}
+
+.endgame-page--da-project .endgame-page__playerscore {
+  justify-content: center;
+  align-items: center;
+  margin-left: 0;
+
+  p {
+    height: 4rem;
+  }
+}
+
+.endgame-page--da-project .endgame-page__btn {
+  padding: 1rem 1.5rem;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.game-page--da-project .game-page__btn {
+  &:hover {
+    background-color: #1E7594;
+    color: var.$color-text-white;}
+  &::before {
+    content: "";
+    width: 2rem;
+    height: 1.25rem;
+    background: url("../../assets/icons/button_da-project_exit.png") center / contain no-repeat;
+  }
+}
