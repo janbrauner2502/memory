@@ -149,7 +149,7 @@ export function getEndGameContentWinnerTemplate(
 ): string {
   return `
         <div class="endgame-page__result">
-            <header class="confetti confetti--${theme === "vibe" ? "vibe" : "done"}">${getWinnerHeaderTemplate()}</header>
+            <header class="confetti confetti--${theme === "vibe" ? "vibe" : "done"}">${getWinnerHeaderTemplate()}${getWinnerHeaderLargeTemplate()}</header>
             <div class="endgame-page__winner">
                 <div class="endgame-page__winner-header">
                     <p>The winner is</p>
@@ -203,4 +203,28 @@ export function getWinnerHeaderTemplate(): string {
           <div class="confetti__piece confetti__piece--9">
               <div class="confetti__shape confetti__shape--9"></div>
           </div>`;
+}
+
+export function getWinnerHeaderLargeTemplate(): string {
+  return `<div class="confetti__large-piece confetti__large-piece--1"></div>
+          <div class="confetti__large-piece confetti__large-piece--2"></div>
+          <div class="confetti__large-piece confetti__large-piece--3"></div>
+          <div class="confetti__large-piece confetti__large-piece--4"></div>
+          <div class="confetti__large-piece confetti__large-piece--5"></div>
+          <div class="confetti__large-piece confetti__large-piece--6"></div>
+          <div class="confetti__large-piece confetti__large-piece--7"></div>
+          <div class="confetti__large-piece confetti__large-piece--8"></div>
+          <div class="confetti__large-piece confetti__large-piece--9"></div>
+          <div class="confetti__large-piece confetti__large-piece--10"></div>
+          <div class="confetti__large-piece confetti__large-piece--11"></div>
+          <div class="confetti__large-piece confetti__large-piece--12"></div>
+          <div class="confetti__large-piece confetti__large-piece--13"></div>
+          <div class="confetti__large-piece confetti__large-piece--14"></div>
+          <div class="confetti__large-piece confetti__large-piece--15"></div>
+          <div class="confetti__large-piece confetti__large-piece--16"></div>
+          <div class="confetti__large-piece confetti__large-piece--17"></div>
+          <div class="confetti__large-piece confetti__large-piece--18"></div>
+          <div class="confetti__large-piece confetti__large-piece--19"></div>
+          <div class="confetti__large-piece confetti__large-piece--20"></div>
+          <div class="confetti__large-piece confetti__large-piece--21"></div>`;
 }

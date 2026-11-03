@@ -9,6 +9,7 @@ $color-card-front-2: #4dd5bc;
   justify-content: center;
   width: 100%;
   min-height: 100dvh;
+  overflow-x: clip;
 
   &__content {
     max-width: var.$content-max-width;

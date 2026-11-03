@@ -1,7 +1,7 @@
 @use "../abstracts/variables" as var;
 
-$color-bg-1: #E8E2DC;
-$color-bg-2: #64F5F88F;
+$color-bg-1: #dda487;
+$color-bg-2: #dda4878f;
 $color-header-bg-1: #FFFFFF;
 $color-player-bg: #FFFFFF;
 $color-card-front-1: #F3832D;
@@ -17,7 +17,7 @@ $color-player-orange: #EA6900;
 
 
 .game-page--food {
-  background: $color-bg-1;
+  background: linear-gradient(45deg, $color-bg-1 0%, $color-bg-2 50%);
   font-family: var.$font-klee-one;
 
   .game-page {
@@ -154,7 +154,6 @@ $color-player-orange: #EA6900;
 
   .endgame-page {
     &__header {
-      color: var.$color-text-white;
 
       p {
         text-box: trim-both cap alphabetic;
@@ -226,7 +225,7 @@ $color-player-orange: #EA6900;
   border: 10px solid transparent;
   border-radius: .875rem;
   font-family: var.$font-delius-unicase;
-  padding: 0.125rem 1.31rem;
+  padding: 0.125rem 0.075rem;
   color: $color-card-front-1;
   background-color: $color-bg-1;
   border-image: url("../../assets/icons/button_food_exit_border.png") 12 stretch;
@@ -299,6 +298,10 @@ $color-player-orange: #EA6900;
 
 .endgame-page--food:has(.endgame-page__gameover) {
   background-color: $color-card-front-1;
+
+  .endgame-page__gameover {
+    color: var.$color-text-white;
+  }
 }
 .endgame-page--food:has(.endgame-page__result) {
   background-color: unset;

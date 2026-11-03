@@ -47,9 +47,9 @@ $color-card-face-back: #e8f3f0;
         border-radius: 32px;
         corner-shape: squircle;
         background-image: linear-gradient(
-          to top right,
-          $color-card-front-1 0%,
-          $color-card-front-2 100%
+                to top right,
+                $color-card-front-1 0%,
+                $color-card-front-2 100%
         );
 
         &::before {
@@ -81,6 +81,7 @@ $color-card-face-back: #e8f3f0;
         }
       }
     }
+
     &__current-player {
       font-weight: normal;
       font-size: 1.625rem;
@@ -132,6 +133,7 @@ $color-card-face-back: #e8f3f0;
       }
     }
   }
+
   .game-page__card--initial.match .game-page__card--back {
     outline: 5px solid $color-card-front-2;
     outline-offset: -5px;
@@ -147,8 +149,13 @@ $color-card-face-back: #e8f3f0;
 
 .endgame-page--vibe {
   .endgame-page {
-    &__header {
+    &__content {
+      @media (width > 1440px) {
+        max-width: unset;
+      }
+    }
 
+    &__header {
       p {
         text-box: trim-both cap alphabetic;
 
@@ -189,7 +196,7 @@ $color-card-face-back: #e8f3f0;
       align-items: center;
       row-gap: 4rem;
 
-      p{
+      p {
         &:nth-child(1) {
           margin-bottom: 1rem;
           font-weight: normal;
@@ -209,6 +216,7 @@ $color-card-face-back: #e8f3f0;
 
     }
   }
+
 }
 
 .endgame-page--vibe .endgame-page__btn,
@@ -252,8 +260,7 @@ $color-card-face-back: #e8f3f0;
       color: var.$color-player-blue;
 
       &::before {
-        background: url("../../assets/icons/label_vibe_blue_player.png")
-          center / contain no-repeat;
+        background: url("../../assets/icons/label_vibe_blue_player.png") center / contain no-repeat;
       }
     }
 
@@ -261,8 +268,7 @@ $color-card-face-back: #e8f3f0;
       color: var.$color-player-orange;
 
       &::before {
-        background: url("../../assets/icons/label_vibe_orange_player.png")
-          center / contain no-repeat;
+        background: url("../../assets/icons/label_vibe_orange_player.png") center / contain no-repeat;
       }
     }
 
@@ -276,6 +282,7 @@ $color-card-face-back: #e8f3f0;
   justify-content: center;
   align-items: center;
   margin-left: 0;
+
   p {
     height: 4rem;
   }
@@ -292,7 +299,6 @@ $color-card-face-back: #e8f3f0;
     content: "";
     width: 2rem;
     height: 1.25rem;
-    background: url("../../assets/icons/button_vibe_exit.png") center / contain
-      no-repeat;
+    background: url("../../assets/icons/button_vibe_exit.png") center / contain no-repeat;
   }
 }
