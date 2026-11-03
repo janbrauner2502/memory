@@ -95,10 +95,10 @@ export function gamePageTemplate(
           </p>
           <div class="game-page__dialog-btn-wrapper">
             <button class="game-page__dialog-btn" popovertarget="exitGameDialog" popovertargetaction="hide" type="button">
-              Back to game
+              ${theme === "vibe" || theme === "da-project" ? "Back to game" : "No, back to game"}
             </button>
             <button class="btn game-page__dialog-btn" type="button" data-action="exitGame">
-              Exit game
+              ${theme === "vibe" || theme === "da-project" ? "Exit game" : "Yes, quit game"} 
             </button>
           </div>
         </dialog>
