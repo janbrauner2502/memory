@@ -5,12 +5,12 @@ import { Theme, Player, BoardSize } from "./main";
 export function startPageTemplate(): string {
   return `<main class="start-page">
         <section class="start-page__content">
-            <img class="start-page__watermark" src="/assets/icons/stadia_controller.png" alt="">
+            <img class="start-page__watermark" src="./assets/icons/stadia_controller.png" alt="">
             <div class="start-page__text">
                 <p class="start-page__kicker">It’s play time.</p>
                 <h1 class="start-page__headline">Ready to play?</h1>
             </div>
-            <button id="startBtn" class="btn start-page__btn" type="button" data-action="settingPage">
+            <button class="btn start-page__btn" type="button" data-action="settingPage">
                 <span class="start-page__btn-label">Play</span>
             </button>
         </section>
@@ -76,7 +76,7 @@ export function gamePageTemplate(
           <div class="game-page__current-player">
             Current player:
             <span
-              ><img src="assets/icons/label_${theme}_${player}_${theme === "vibe" ? "" : "current-"}player.png" alt="Player ${player}"
+              ><img src="./assets/icons/label_${theme}_${player}_${theme === "vibe" ? "" : "current-"}player.png" alt="Player ${player}"
             /></span>
           </div>
           <button
@@ -116,7 +116,7 @@ export function getCardTemplate(index: number): string {
 }
 
 export function getTemplateCurrentPlayer(theme: Theme, player: Player) {
-  return `<img src="assets/icons/label_${theme}_${player}_${theme === "vibe" ? "" : "current-"}player.png" alt="Player ${player}">`;
+  return `<img src="./assets/icons/label_${theme}_${player}_${theme === "vibe" ? "" : "current-"}player.png" alt="Player ${player}">`;
 }
 
 export function getEndGameTemplate(

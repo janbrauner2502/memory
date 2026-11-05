@@ -15,7 +15,6 @@ let body: HTMLElement = document.body;
 let currentPlayer: Player;
 let playerScore: { blue: number; orange: number };
 let finalScore: number;
-let failedAttempts: number;
 
 let gameSetting: { theme: Theme; player: Player; boardSize: BoardSize } = {
   theme: "vibe",
@@ -43,7 +42,6 @@ function changePage(event: MouseEvent): void {
       body.innerHTML = settingPageTemplate();
       break;
     case "startGame":
-      failedAttempts = 0;
       playerScore = { blue: 0, orange: 0 };
       body.style.pointerEvents = "none";
       body.style.overflow = "hidden";
@@ -192,29 +190,34 @@ function compareCards(index: number): void {
       orangeScore.textContent = `${playerScore.orange}`;
       checkGameEnd();
     } else {
-      failedAttempts += 1;
       sectionElement.style.pointerEvents = "none";
       setTimeout((): void => {
         let flippedCards = document.querySelectorAll(
           "div:not(.match) >.is-flipped",
         );
-        sectionElement.removeAttribute("style");
+
         flippedCards.forEach((card) => {
           card.classList.remove("is-flipped");
+          card.addEventListener(
+            "transitionend",
+            (): void => {
+              card.lastElementChild!.innerHTML = "";
+              sectionElement.removeAttribute("style");
+            },
+            { once: true },
+          );
         });
-      }, 2000);
-      if (failedAttempts === 3) {
-        if (currentPlayer === "blue") {
-          currentPlayer = "orange";
-        } else {
-          currentPlayer = "blue";
-        }
-        failedAttempts = 0;
-        currentPlayerSpan.innerHTML = getTemplateCurrentPlayer(
-          gameSetting.theme,
-          currentPlayer,
-        );
+      }, 1500);
+
+      if (currentPlayer === "blue") {
+        currentPlayer = "orange";
+      } else {
+        currentPlayer = "blue";
       }
+      currentPlayerSpan.innerHTML = getTemplateCurrentPlayer(
+        gameSetting.theme,
+        currentPlayer,
+      );
     }
     compareCardsArray = [];
   }
@@ -280,8 +283,7 @@ function setMotiveOnCard(index: number): void {
   ) as HTMLElement;
   if (!setMotive) return;
   let cardBackSide = setMotive.lastElementChild as HTMLElement;
-  // cardBackSide.innerHTML = `<img src="./assets/card-picture/${gameSetting.theme}/card-${cardMotivesArray[index]}.png" alt="Card motive ${cardMotivesArray[index]}">`;
-  cardBackSide.style.backgroundImage = `url(../../assets/card-picture/${gameSetting.theme}/card-${cardMotivesArray[index]}.png)`;
+  cardBackSide.innerHTML = `<img src="./assets/card-picture/${gameSetting.theme}/card-${cardMotivesArray[index]}.png" alt="Card motive ${cardMotivesArray[index]}">`;
 }
 
 document.addEventListener("click", (event: MouseEvent): void => {
