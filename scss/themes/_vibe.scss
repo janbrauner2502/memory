@@ -1,4 +1,5 @@
 @use "../abstracts/variables" as var;
+@use "../abstracts/mixins" as mixin;
 
 $color-bg-1: #6d6d6dff;
 $color-bg-2: #303131ff;
@@ -53,16 +54,7 @@ $color-card-face-back: #e8f3f0;
         );
 
         &::before {
-          content: "";
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          transform: translate(-50%, -50%);
-          width: 60px;
-          height: 48px;
-          background: url("/assets/card-picture/front-face.png") center /
-            contain no-repeat;
-          opacity: 0.2;
+          @include mixin.front-face;
         }
       }
 
