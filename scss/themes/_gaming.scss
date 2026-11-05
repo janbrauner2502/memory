@@ -1,4 +1,5 @@
 @use "../abstracts/variables" as var;
+@use "../abstracts/mixins" as mixin;
 
 $color-bg-1: #217EA7;
 $color-bg-2: #294F60;
@@ -78,9 +79,7 @@ $color-player-orange: #EA6900;
       letter-spacing: 7%;
 
       span {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        @include mixin.flex-center;
         width: fit-content;
         height: fit-content;
         border-radius: .25rem;
@@ -208,12 +207,6 @@ $color-player-orange: #EA6900;
     }
 
     &__draw {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      row-gap: 4rem;
-
       p {
         &:nth-child(1) {
           margin-bottom: 1rem;

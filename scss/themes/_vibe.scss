@@ -190,12 +190,6 @@ $color-card-face-back: #e8f3f0;
     }
 
     &__draw {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      row-gap: 4rem;
-
       p {
         &:nth-child(1) {
           margin-bottom: 1rem;
