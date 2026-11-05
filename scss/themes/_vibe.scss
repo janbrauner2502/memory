@@ -60,7 +60,7 @@ $color-card-face-back: #e8f3f0;
           transform: translate(-50%, -50%);
           width: 60px;
           height: 48px;
-          background: url("../../assets/card-picture/front-face.png") center /
+          background: url("/assets/card-picture/front-face.png") center /
             contain no-repeat;
           opacity: 0.2;
         }
@@ -260,7 +260,7 @@ $color-card-face-back: #e8f3f0;
       color: var.$color-player-blue;
 
       &::before {
-        background: url("../../assets/icons/label_vibe_blue_player.png") center / contain no-repeat;
+        background: url("/assets/icons/label_vibe_blue_player.png") center / contain no-repeat;
       }
     }
 
@@ -268,7 +268,7 @@ $color-card-face-back: #e8f3f0;
       color: var.$color-player-orange;
 
       &::before {
-        background: url("../../assets/icons/label_vibe_orange_player.png") center / contain no-repeat;
+        background: url("/assets/icons/label_vibe_orange_player.png") center / contain no-repeat;
       }
     }
 
@@ -299,6 +299,6 @@ $color-card-face-back: #e8f3f0;
     content: "";
     width: 2rem;
     height: 1.25rem;
-    background: url("../../assets/icons/button_vibe_exit.png") center / contain no-repeat;
+    background: url("/assets/icons/button_vibe_exit.png") center / contain no-repeat;
   }
 }

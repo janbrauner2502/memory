@@ -52,7 +52,7 @@
       content: "";
       width: 2.75rem;
       height: 2rem;
-      background: url("../../assets/icons/stadia_controller_btn.png") center /
+      background: url("/assets/icons/stadia_controller_btn.png") center /
         contain no-repeat;
       transition: all 0.2s ease;
     }
@@ -61,7 +61,7 @@
       content: "";
       width: 2.5rem;
       height: 1.875rem;
-      background: url("../../assets/icons/arrow_btn_default.png") center /
+      background: url("/assets/icons/arrow_btn_default.png") center /
         contain no-repeat;
       transition: all 0.2s ease;
     }
@@ -74,7 +74,7 @@
       }
 
       &::after {
-        background-image: url("../../assets/icons/arrow_btn_hover.png");
+        background-image: url("/assets/icons/arrow_btn_hover.png");
       }
     }
   }

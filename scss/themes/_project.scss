@@ -57,7 +57,7 @@ $color-player-orange: #EA6900;
           transform: translate(-50%, -50%);
           width: 60px;
           height: 48px;
-          background: url("../../assets/card-picture/front-face.png") center /
+          background: url("/assets/card-picture/front-face.png") center /
             contain no-repeat;
           opacity: 0.2;
         }
@@ -238,7 +238,7 @@ $color-player-orange: #EA6900;
 
   &:hover::before {
     filter: drop-shadow(3px 3px 4px $drop-shadow);
-    background: url("../../assets/icons/button_vibe_exit.png") center / contain no-repeat;
+    background: url("/assets/icons/button_vibe_exit.png") center / contain no-repeat;
   }
 }
 
@@ -265,7 +265,7 @@ $color-player-orange: #EA6900;
       color: $color-player-blue;
 
       &::before {
-        background: url("../../assets/icons/label_gaming_blue_player.png") center / contain no-repeat;
+        background: url("/assets/icons/label_gaming_blue_player.png") center / contain no-repeat;
       }
     }
 
@@ -273,7 +273,7 @@ $color-player-orange: #EA6900;
       color: $color-player-orange;
 
       &::before {
-        background: url("../../assets/icons/label_gaming_orange_player.png") center / contain no-repeat;
+        background: url("/assets/icons/label_gaming_orange_player.png") center / contain no-repeat;
       }
     }
 
@@ -308,6 +308,6 @@ $color-player-orange: #EA6900;
     content: "";
     width: 2rem;
     height: 1.25rem;
-    background: url("../../assets/icons/button_da-project_exit.png") center / contain no-repeat;
+    background: url("/assets/icons/button_da-project_exit.png") center / contain no-repeat;
   }
 }

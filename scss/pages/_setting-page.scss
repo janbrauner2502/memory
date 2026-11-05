@@ -47,49 +47,49 @@
 
     &:has(input[value="vibe"]:checked) {
       .setting-page__board-preview {
-        background-image: url("../../assets/img/vibe.png");
+        background-image: url("/assets/img/vibe.png");
       }
     }
 
     &:has(input[value="gaming"]:checked) {
       .setting-page__board-preview {
-        background-image: url("../../assets/img/gaming.png");
+        background-image: url("/assets/img/gaming.png");
       }
     }
 
     &:has(input[value="da-project"]:checked) {
       .setting-page__board-preview {
-        background-image: url("../../assets/img/da-project.png");
+        background-image: url("/assets/img/da-project.png");
       }
     }
 
     &:has(input[value="food"]:checked) {
       .setting-page__board-preview {
-        background-image: url("../../assets/img/food.png");
+        background-image: url("/assets/img/food.png");
       }
     }
 
     &:has(input[value="vibe"]:hover) {
       .setting-page__board-preview {
-        background-image: url("../../assets/img/vibe.png");
+        background-image: url("/assets/img/vibe.png");
       }
     }
 
     &:has(input[value="gaming"]:hover) {
       .setting-page__board-preview {
-        background-image: url("../../assets/img/gaming.png");
+        background-image: url("/assets/img/gaming.png");
       }
     }
 
     &:has(input[value="da-project"]:hover) {
       .setting-page__board-preview {
-        background-image: url("../../assets/img/da-project.png");
+        background-image: url("/assets/img/da-project.png");
       }
     }
 
     &:has(input[value="food"]:hover) {
       .setting-page__board-preview {
-        background-image: url("../../assets/img/food.png");
+        background-image: url("/assets/img/food.png");
       }
     }
   }
@@ -101,7 +101,7 @@
     width: 460px;
     height: 412px;
     transition: background-image .1s ease;
-    background: url("../../assets/img/vibe.png") center / contain no-repeat;
+    background: url("/assets/img/vibe.png") center / contain no-repeat;
   }
 
   &__group-label {
@@ -126,7 +126,7 @@
         content: "";
         height: 1.25rem;
         width: 3rem;
-        background: url("../../assets/icons/list_after_ele.png") left center / contain no-repeat;
+        background: url("/assets/icons/list_after_ele.png") left center / contain no-repeat;
       }
 
       &:hover {
@@ -196,19 +196,19 @@
 
     &--themes {
       &::before {
-        background-image: url("../../assets/icons/game_theme_component.png");
+        background-image: url("/assets/icons/game_theme_component.png");
       }
     }
 
     &--player {
       &::before {
-        background-image: url("../../assets/icons/player_component.png");
+        background-image: url("/assets/icons/player_component.png");
       }
     }
 
     &--board-size {
       &::before {
-        background-image: url("../../assets/icons/board_size_component.png");
+        background-image: url("/assets/icons/board_size_component.png");
       }
     }
   }
@@ -268,7 +268,7 @@
       content: "";
       width: 1.25rem;
       height: 1rem;
-      background: url("../../assets/icons/smart_display.png") center / contain no-repeat;
+      background: url("/assets/icons/smart_display.png") center / contain no-repeat;
     }
 
     &:hover {
@@ -292,7 +292,7 @@
       background-color: #DBDBD6;
 
       &::before {
-        background-image: url("../../assets/icons/smart_display_disabled.png");
+        background-image: url("/assets/icons/smart_display_disabled.png");
       }
     }
   }
