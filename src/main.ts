@@ -13,7 +13,7 @@ import {
 let body: HTMLElement = document.body;
 
 let currentPlayer: Player;
-let playerScore: { blue: number; orange: number };
+let playerScore: PlayerScore;
 let finalScore: number;
 
 let gameSetting: { theme: Theme; player: Player; boardSize: BoardSize } = {
@@ -29,14 +29,18 @@ type BtnType = "settingPage" | "startGame" | "exitGame";
 export type Theme = "vibe" | "gaming" | "da-project" | "food";
 export type Player = "blue" | "orange";
 export type BoardSize = "16" | "24" | "36";
+type PlayerScore = { blue: number; orange: number };
 
 function changePage(event: MouseEvent): void {
   const button = (event.target as HTMLElement).closest(".btn") as HTMLElement;
   if (!button) return;
 
+  actionButtonCase(button);
+}
+
+function actionButtonCase(button: HTMLElement): void {
   const action = button.dataset.action as BtnType | undefined;
   if (!action) return;
-
   switch (action) {
     case "settingPage":
       body.innerHTML = settingPageTemplate();
@@ -66,21 +70,34 @@ function changePage(event: MouseEvent): void {
 function prepareGame(event: MouseEvent): void {
   const input = (event.target as HTMLElement).closest("input") as HTMLElement;
   if (!input) return;
-  let themeInput = document.querySelector<HTMLInputElement>(
+  let themeInputElement = document.querySelector<HTMLInputElement>(
     'input[name="theme"]:checked',
   );
-  let playerInput = document.querySelector<HTMLInputElement>(
+  let playerInputElement = document.querySelector<HTMLInputElement>(
     'input[name="player"]:checked',
   );
-  let boardSizeInput = document.querySelector<HTMLInputElement>(
+  let boardSizeInputElement = document.querySelector<HTMLInputElement>(
     'input[name="board-size"]:checked',
   );
+  inputTheme(themeInputElement);
+  inputPlayer(playerInputElement);
+  inputBoardSize(boardSizeInputElement);
 
+  setStartGameButtonAble(
+    themeInputElement,
+    playerInputElement,
+    boardSizeInputElement,
+  );
+}
+
+function inputTheme(themeInput: HTMLInputElement | null): void {
   if (themeInput) {
     gameSetting.theme = themeInput.value as Theme;
     setGameSetting(1, 1, themeInput.nextElementSibling?.textContent ?? "");
   }
+}
 
+function inputPlayer(playerInput: HTMLInputElement | null): void {
   if (playerInput) {
     gameSetting.player = playerInput.value as Player;
     setGameSetting(
@@ -89,7 +106,9 @@ function prepareGame(event: MouseEvent): void {
       `${playerInput.nextElementSibling?.textContent ?? ""} Player`,
     );
   }
+}
 
+function inputBoardSize(boardSizeInput: HTMLInputElement | null): void {
   if (boardSizeInput) {
     gameSetting.boardSize = boardSizeInput.value as BoardSize;
     setGameSetting(
@@ -98,7 +117,13 @@ function prepareGame(event: MouseEvent): void {
       `Board size ${boardSizeInput.nextElementSibling?.textContent ?? ""}`,
     );
   }
+}
 
+function setStartGameButtonAble(
+  themeInput: HTMLInputElement | null,
+  playerInput: HTMLInputElement | null,
+  boardSizeInput: HTMLInputElement | null,
+): void {
   if (themeInput && playerInput && boardSizeInput) {
     const startBtn = document.querySelector(
       ".setting-page__btn",
@@ -176,52 +201,75 @@ function compareCards(index: number): void {
     ".game-page__current-player",
   ) as HTMLElement;
   const currentPlayerSpan = currentPlayerDiv?.firstElementChild;
-  const sectionElement = document.querySelector(
+  const sectionElement: HTMLElement = document.querySelector(
     "section:nth-child(2)",
   ) as HTMLElement;
   if (!sectionElement || !currentPlayerSpan) return;
   compareCardsArray.push(index);
+  checkMatchCards(blueScore, orangeScore, sectionElement, currentPlayerSpan);
+}
 
+function checkMatchCards(
+  blueScore: HTMLElement,
+  orangeScore: HTMLElement,
+  sectionElement: HTMLElement,
+  currentPlayerSpan: Element,
+): void {
   if (compareCardsArray.length == 2) {
     if (compareCardsArray[0] === compareCardsArray[1]) {
-      matchedCards(compareCardsArray[0], compareCardsArray[1]);
-      playerScore[currentPlayer] += 1;
-      blueScore.textContent = `${playerScore.blue}`;
-      orangeScore.textContent = `${playerScore.orange}`;
-      checkGameEnd();
+      countPlayerScore(blueScore, orangeScore);
     } else {
-      sectionElement.style.pointerEvents = "none";
-      setTimeout((): void => {
-        let flippedCards = document.querySelectorAll(
-          "div:not(.match) >.is-flipped",
-        );
-
-        flippedCards.forEach((card) => {
-          card.classList.remove("is-flipped");
-          card.addEventListener(
-            "transitionend",
-            (): void => {
-              card.lastElementChild!.innerHTML = "";
-              sectionElement.removeAttribute("style");
-            },
-            { once: true },
-          );
-        });
-      }, 1500);
-
-      if (currentPlayer === "blue") {
-        currentPlayer = "orange";
-      } else {
-        currentPlayer = "blue";
-      }
-      currentPlayerSpan.innerHTML = getTemplateCurrentPlayer(
-        gameSetting.theme,
-        currentPlayer,
-      );
+      flipCardsBack(sectionElement, currentPlayerSpan);
     }
     compareCardsArray = [];
   }
-  return;
+}
+
+function countPlayerScore(
+  blueScore: HTMLElement,
+  orangeScore: HTMLElement,
+): void {
+  matchedCards(compareCardsArray[0], compareCardsArray[1]);
+  playerScore[currentPlayer] += 1;
+  blueScore.textContent = `${playerScore.blue}`;
+  orangeScore.textContent = `${playerScore.orange}`;
+  checkGameEnd();
+}
+
+function flipCardsBack(
+  sectionElement: HTMLElement,
+  currentPlayerSpan: Element,
+): void {
+  sectionElement.style.pointerEvents = "none";
+  setTimeout((): void => {
+    let flippedCards = document.querySelectorAll(
+      "div:not(.match) >.is-flipped",
+    );
+    flippedCards.forEach((card) => {
+      card.classList.remove("is-flipped");
+      card.addEventListener(
+        "transitionend",
+        (): void => {
+          card.lastElementChild!.innerHTML = "";
+          sectionElement.removeAttribute("style");
+        },
+        { once: true },
+      );
+    });
+  }, 1500);
+  changeCurrentPlayer(currentPlayerSpan);
+}
+
+function changeCurrentPlayer(currentPlayerSpan: Element): void {
+  if (currentPlayer === "blue") {
+    currentPlayer = "orange";
+  } else {
+    currentPlayer = "blue";
+  }
+  currentPlayerSpan.innerHTML = getTemplateCurrentPlayer(
+    gameSetting.theme,
+    currentPlayer,
+  );
 }
 
 function checkGameEnd(): void {
