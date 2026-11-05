@@ -1,3 +1,5 @@
+@use "variables" as var;
+
 @mixin flex-center {
   display: flex;
   justify-content: center;
@@ -15,4 +17,23 @@
   background: url("/assets/card-picture/front-face.png") center /
             contain no-repeat;
   opacity: 0.2;
+}
+
+@mixin player-list {
+  display: flex;
+  align-items: center;
+
+  &::before {
+    content: "";
+    width: 1.5rem;
+    height: 1.25rem;
+  }
+
+  &:nth-child(1) {
+    color: var.$color-player-blue;
+  }
+
+  &:nth-child(2) {
+    color: var.$color-player-orange;
+  }
 }

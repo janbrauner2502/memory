@@ -43,22 +43,7 @@ $color-card-front-2: #4dd5bc;
 
   &__playerscore {
     p {
-      display: flex;
-      align-items: center;
-
-      &::before {
-        content: "";
-        width: 1.5rem;
-        height: 1.25rem;
-      }
-
-      &:nth-child(1) {
-        color: var.$color-player-blue;
-      }
-
-      &:nth-child(2) {
-        color: var.$color-player-orange;
-      }
+      @include mixin.player-list;
     }
   }
 
