@@ -2,6 +2,11 @@
 import "../main.scss";
 import { Theme, Player, BoardSize } from "./main";
 
+/**
+ * Creates the start page with the play button.
+ *
+ * @returns The HTML of the start page.
+ */
 export function startPageTemplate(): string {
   return `<main class="start-page">
         <section class="start-page__content">
@@ -17,6 +22,12 @@ export function startPageTemplate(): string {
     </main>`;
 }
 
+/**
+ * Creates the settings page with the choices for theme, player and board size.
+ * The start button is disabled at first.
+ *
+ * @returns The HTML of the settings page.
+ */
 export function settingPageTemplate(): string {
   return `<main class="setting-page">
         <section class="setting-page__content">
@@ -59,6 +70,16 @@ export function settingPageTemplate(): string {
     </main>`;
 }
 
+/**
+ * Creates the game page with the score, the current player, the exit dialog and an empty board.
+ *
+ * @param theme - The selected theme.
+ * @param player - The player shown as the current player.
+ * @param boardSize - The selected board size, used for the board's modifier class.
+ * @param blueScore - The blue player's score.
+ * @param orangeScore - The orange player's score.
+ * @returns The HTML of the game page.
+ */
 export function gamePageTemplate(
   theme: Theme,
   player: Player,
@@ -106,6 +127,12 @@ export function gamePageTemplate(
     </main>`;
 }
 
+/**
+ * Creates a single card with a front and a back side.
+ *
+ * @param index - The position of the card on the board, stored in `data-index`.
+ * @returns The HTML of the card.
+ */
 export function getCardTemplate(index: number): string {
   return `<div class="game-page__card--initial">
             <div class="game-page__card" data-index="${index}">
@@ -115,10 +142,25 @@ export function getCardTemplate(index: number): string {
           </div>`;
 }
 
+/**
+ * Creates the image that shows the current player.
+ *
+ * @param theme - The selected theme.
+ * @param player - The current player.
+ * @returns The HTML of the image.
+ */
 export function getTemplateCurrentPlayer(theme: Theme, player: Player) {
   return `<img src="./assets/icons/label_${theme}_${player}_${theme === "vibe" ? "" : "current-"}player.png" alt="Player ${player}">`;
 }
 
+/**
+ * Creates the end game page with the game over text and the final score.
+ *
+ * @param theme - The selected theme.
+ * @param blueScore - The blue player's final score.
+ * @param orangeScore - The orange player's final score.
+ * @returns The HTML of the end game page.
+ */
 export function getEndGameTemplate(
   theme: Theme,
   blueScore: number,
@@ -143,6 +185,13 @@ export function getEndGameTemplate(
 </main>`;
 }
 
+/**
+ * Creates the result for a win with the confetti, the winner, an image and a button back to the start page.
+ *
+ * @param theme - The selected theme.
+ * @param player - The player who won.
+ * @returns The HTML of the winner result.
+ */
 export function getEndGameContentWinnerTemplate(
   theme: Theme,
   player: Player,
@@ -161,6 +210,12 @@ export function getEndGameContentWinnerTemplate(
         </div>`;
 }
 
+/**
+ * Creates the result for a draw with an image and a button back to the start page.
+ *
+ * @param theme - The selected theme.
+ * @returns The HTML of the draw result.
+ */
 export function getEndGameContentDrawTemplate(theme: Theme): string {
   return `
         <div class="endgame-page__result">
@@ -175,6 +230,11 @@ export function getEndGameContentDrawTemplate(theme: Theme): string {
         </div>`;
 }
 
+/**
+ * Creates the 9 regular confetti pieces for the winner header.
+ *
+ * @returns The HTML of the confetti pieces.
+ */
 export function getWinnerHeaderTemplate(): string {
   return `<div class="confetti__piece confetti__piece--1">
               <div class="confetti__shape confetti__shape--1"></div>
@@ -205,6 +265,11 @@ export function getWinnerHeaderTemplate(): string {
           </div>`;
 }
 
+/**
+ * Creates the 21 large confetti pieces for the winner header.
+ *
+ * @returns The HTML of the large confetti pieces.
+ */
 export function getWinnerHeaderLargeTemplate(): string {
   return `<div class="confetti__large-piece confetti__large-piece--1"></div>
           <div class="confetti__large-piece confetti__large-piece--2"></div>
