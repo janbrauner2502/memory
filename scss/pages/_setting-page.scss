@@ -214,6 +214,7 @@
   }
 
   &__game-details {
+    width: 51rem;
     position: absolute;
     bottom: 0;
     right: 0;
@@ -225,7 +226,8 @@
     padding: 1rem;
 
     > p {
-      padding: 0 20px;
+      flex: 1;
+      text-align: center;
     }
   }
 
